@@ -1,0 +1,47 @@
+{
+  "name": "wscore/pile",
+  "description": "a simple piled up handler for http application.",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Asao",
+      "email": "kamei@workspot.jp"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {
+    "php": ">=5.3.3",
+    "tuum/web":"dev-master"
+  },
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/TuumPHP/byof"
+    },
+    {
+      "type": "vcs",
+      "url": "https://github.com/TuumPHP/Web"
+    },
+    {
+      "type": "vcs",
+      "url": "https://github.com/TuumPHP/Locator"
+    },
+    {
+      "type": "vcs",
+      "url": "https://github.com/TuumPHP/Router"
+    },
+    {
+      "type": "vcs",
+      "url": "https://github.com/TuumPHP/View"
+    },
+    {
+      "type": "vcs",
+      "url": "https://github.com/TuumPHP/Routing"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Demo\\": "src/"
+    }
+  }
+}
