@@ -1,6 +1,6 @@
 <?php
 use Demo\Tasks\TaskDao;
-use Tuum\View\Viewer\View;
+use Tuum\Web\Viewer\View;
 
 /** @var View $view */
 

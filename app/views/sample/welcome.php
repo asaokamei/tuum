@@ -1,7 +1,7 @@
 <?php
-use Tuum\View\Viewer\View;
+use Tuum\Web\Viewer\View;
 
-/** @var View $view */
+/** @var \Tuum\Web\Viewer\View $view */
 
 $name = $view['name'];
 
