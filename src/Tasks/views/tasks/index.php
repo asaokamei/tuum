@@ -52,30 +52,29 @@ $tasks    = $view->asList('tasks');
     </thead>
     <tbody>
     <?php
-    $keys = $view->keysOf('tasks');
-    foreach($keys as $key) :
-        $class = ($view->value("tasks[{$key}][1]") === TaskDao::ACTIVE) ? 'active' : 'done';
+    foreach($tasks as $key => $task) :
+        $class = ($task[1] === TaskDao::ACTIVE) ? 'active' : 'done';
     ?>
     <tr>
-        <td><?= $view->value("tasks[{$key}][0]") ?></td>
+        <td><?= $task[0] ?></td>
         <td>
-            <span class="<?= $class; ?>" ><?= $view->html("tasks[{$key}][2]") ?></span>
+            <span class="<?= $class; ?>" ><?= $view->h($task[2]) ?></span>
             <?php
-            if($view->value("tasks[{$key}][1]")===TaskDao::DONE) {
-                echo "
-                <form name=\"delete\" method=\"post\" action=\"{$basePath}/{$view->html("tasks[{$key}][0]")}/delete\" >
-                    {$view->hiddenTag('_token')}
+            if($task[1]===TaskDao::DONE) {
+                ?>
+                <form name="delete" method="post" action="<?= $basePath,'/', $task[0], '/delete'; ?>" >
+                    <?= $view->hiddenTag('_token') ?>
                     <input type='submit' value='del' />
                 </form>
-                ";
+                <?php
             }
             ?>
         </td>
         <td>
-            <?= ($by = new DateTime($view->value("tasks[{$key}][3]"))) ? $by->format('Y/m/d') : '---'; ?>
+            <?= ($by = new DateTime($task[3])) ? $by->format('Y/m/d') : '---'; ?>
         </td>
         <td>
-            <form name="toggle" method="post" action="<?= $basePath.'/'.$view->html("tasks[{$key}][0]").'/toggle' ?>" >
+            <form name="toggle" method="post" action="<?= $basePath.'/'.$task[0].'/toggle' ?>" >
                 <?= $view->hiddenTag('_token'); ?>
                 <input type="submit" value="toggle" />
             </form>
@@ -94,11 +93,11 @@ $tasks    = $view->asList('tasks');
             <tr>
                 <td width="15%">add a new task:</td>
                 <td>
-                    <input type="text" name="task" value="<?= $view->value('task');?>" placeholder="add a new task..." style="width: 40em;"/>
+                    <input type="text" name="task" value="<?= $view->html('task');?>" placeholder="add a new task..." style="width: 40em;"/>
                     <?= $view->errors->text('task'); ?>
                 </td>
                 <td>
-                    <input type="date" name="done_by" value="<?= $view->value('done_by'); ?>" />
+                    <label><input type="date" name="done_by" value="<?= $view->value('done_by'); ?>" /></label>
                     <?= $view->errors->text('done_by'); ?>
                 </td>
                 <td>
