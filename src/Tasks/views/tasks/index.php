@@ -4,8 +4,10 @@ use Tuum\Web\Viewer\View;
 
 /** @var View $view */
 
-$basePath = $view['basePath'];
-$tasks    = $view->withKey('tasks');
+$inputs   = $view->inputs;
+$data     = $view->data;
+$basePath = $data['basePath'];
+$tasks    = $data->withKey('tasks');
 
 ?>
 <?= $this->render('layout/header', [
@@ -18,7 +20,7 @@ $tasks    = $view->withKey('tasks');
 
 <ul>
     <li><form name="init" action="/demoTasks/initialize" method="post" >
-            <?= $view->hiddenTag('_token'); ?>
+            <?= $data->hiddenTag('_token'); ?>
             <input type="submit" value="initialize"/>
         </form></li>
 </ul>
@@ -40,6 +42,10 @@ $tasks    = $view->withKey('tasks');
 </style>
 
 <?php if(isset($tasks)) : ?>
+    
+<!--
+  -- lists of tasks
+  -->    
 
 <table class="table table-hover">
     <thead>
@@ -65,7 +71,7 @@ $tasks    = $view->withKey('tasks');
             if($task[1]===TaskDao::DONE) {
                 ?>
                 <form name="delete" method="post" action="<?= $basePath,'/', $task[0], '/delete'; ?>" >
-                    <?= $view->hiddenTag('_token') ?>
+                    <?= $data->hiddenTag('_token') ?>
                     <input type='submit' value='del' />
                 </form>
                 <?php
@@ -77,7 +83,7 @@ $tasks    = $view->withKey('tasks');
         </td>
         <td>
             <form name="toggle" method="post" action="<?= $basePath.'/'.$task[0].'/toggle' ?>" >
-                <?= $view->hiddenTag('_token'); ?>
+                <?= $data->hiddenTag('_token'); ?>
                 <input type="submit" value="toggle" />
             </form>
         </td>
@@ -86,20 +92,24 @@ $tasks    = $view->withKey('tasks');
     </tbody>
 </table>
 
+    <!--
+      -- form for adding a new task
+      -->
+    
     <h3>adding a new task</h3>
 
     <form name="add" method="post" action="<?= $basePath; ?>/">
-        <?= $view->hiddenTag('_token'); ?>
+        <?= $data->hiddenTag('_token'); ?>
         <table class="table">
             <tbody>
             <tr>
                 <td width="15%">add a new task:</td>
                 <td>
-                    <input type="text" name="task" value="<?= $view->valueSafe('task');?>" placeholder="add a new task..." style="width: 40em;"/>
+                    <input type="text" name="task" value="<?= $inputs->get('task', $data['task']);?>" placeholder="add a new task..." style="width: 40em;"/>
                     <?= $view->errors->text('task'); ?>
                 </td>
                 <td>
-                    <label><input type="date" name="done_by" value="<?= $view->value('done_by'); ?>" /></label>
+                    <label><input type="date" name="done_by" value="<?= $inputs->get('done_by', $data['done_by']); ?>" /></label>
                     <?= $view->errors->text('done_by'); ?>
                 </td>
                 <td>
