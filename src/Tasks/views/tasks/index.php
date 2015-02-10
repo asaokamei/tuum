@@ -5,7 +5,7 @@ use Tuum\Web\Viewer\View;
 /** @var View $view */
 
 $basePath = $view['basePath'];
-$tasks    = $view->asList('tasks');
+$tasks    = $view->withKey('tasks');
 
 ?>
 <?= $this->render('layout/header', [
@@ -52,13 +52,15 @@ $tasks    = $view->asList('tasks');
     </thead>
     <tbody>
     <?php
-    foreach($tasks as $key => $task) :
+    foreach($tasks->getKeys() as $key) :
+
+        $task = $tasks->withKey($key);
         $class = ($task[1] === TaskDao::ACTIVE) ? 'active' : 'done';
     ?>
     <tr>
         <td><?= $task[0] ?></td>
         <td>
-            <span class="<?= $class; ?>" ><?= $view->h($task[2]) ?></span>
+            <span class="<?= $class; ?>" ><?= $task->safe(2) ?></span>
             <?php
             if($task[1]===TaskDao::DONE) {
                 ?>
@@ -93,7 +95,7 @@ $tasks    = $view->asList('tasks');
             <tr>
                 <td width="15%">add a new task:</td>
                 <td>
-                    <input type="text" name="task" value="<?= $view->html('task');?>" placeholder="add a new task..." style="width: 40em;"/>
+                    <input type="text" name="task" value="<?= $view->valueSafe('task');?>" placeholder="add a new task..." style="width: 40em;"/>
                     <?= $view->errors->text('task'); ?>
                 </td>
                 <td>
