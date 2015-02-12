@@ -98,7 +98,7 @@ $tasks    = $data->withKey('tasks');
     
     <h3>adding a new task</h3>
 
-    <form name="add" method="post" action="<?= $basePath; ?>/">
+    <form name="add" method="post" action="<?= $basePath; ?>">
         <?= $data->hiddenTag('_token'); ?>
         <table class="table">
             <tbody>
@@ -121,7 +121,7 @@ $tasks    = $data->withKey('tasks');
     </form>
 
     <p>This form does not have CsRf token. should return forbidden error.</p>
-    <form name="add" method="post" action="<?= $basePath; ?>/">
+    <form name="add" method="post" action="<?= $basePath; ?>">
         <table class="table">
             <tbody>
             <tr>
