@@ -85,7 +85,6 @@ class TaskController extends AbstractController
     {
         if($this->dao->toggle($id)) {
             return $this->respond
-                ->withMessage('toggled task #'.$id)
                 ->asPath($this->basePath);
         }
         return $this->respond

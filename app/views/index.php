@@ -14,7 +14,9 @@
 <h3>Routes (closure style)</h3>
 <ul>
     <li><a href="closure">from closure</a></li>
-    <li><a href="closure-view">from closure-view</a></li>
+    <li><a href="closure/text">raw text from a closure</a></li>
+    <li><a href="closure/array">array from a closure</a></li>
+    <li><a href="closure/view">a view file from closure-view</a></li>
 </ul>
 
 <h3>Sample Controller</h3>
