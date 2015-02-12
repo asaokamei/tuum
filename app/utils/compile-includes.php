@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * script to gather used classes for TuumPHP
  */
 
@@ -13,12 +13,7 @@ require_once( $vendor_dir.'/autoload.php');
 $config = ClassLoader::getIncludes(function( ClassLoader $loader) {
 
     $loader->register();
-    $config = [
-        'debug'  => true,
-        'routes' => [
-            dirname(__DIR__).'/routes.php',
-        ],
-    ];
+    $config = include(dirname(__DIR__).'/config.php');
 
     $boot = include(dirname(__DIR__).'/boot.php');
     /** @var Closure $boot */

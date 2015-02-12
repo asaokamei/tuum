@@ -9,24 +9,24 @@ require_once( dirname( __DIR__ ) . '/vendor/autoload.php' );
 
 date_default_timezone_set('Asia/Tokyo');
 
-// xhprof 
-// include __DIR__.'/xhprof.php';
+// xhprof profiling
+//include __DIR__.'/utils/xhprof.php';
 
-$config = [
-    'debug'  => true,
-    'var'    => dirname(__DIR__).'/var',
-    'routes' => [
-        __DIR__.'/routes.php',
-        __DIR__.'/route-tasks.php',
-    ],
-];
+/*
+ * get configuration
+ */
+$config = include __DIR__.'/config.php';
 
-if($config['debug'] && file_exists($config['var'].'/compiled.php')) {
-    include_once($config['var'].'/compiled.php'     );
-}
-$boot = include( __DIR__.'/boot.php' );
+/*
+ * boot $app
+ */
+$boot = include __DIR__.'/boot.php';
+$boot = include __DIR__.'/boot-prep.php';
 $app  = $boot($config);
 
+/*
+ * run $app
+ */
 $request  = RequestFactory::fromGlobals();
 $response = $app->__invoke( $request );
 $response->send();

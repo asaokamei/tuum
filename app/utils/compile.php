@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * script to create a compiled php classes using ClassPreLoader.
  */
 
@@ -12,16 +12,22 @@ $vendor_dir = dirname(dirname(__DIR__)).'/vendor';
 require_once( $vendor_dir.'/autoload.php');
 
 
-// location of class preLoader script.
-$preLoader   = $vendor_dir.'/bin/classpreloader.php';
+/*
+ * set up class preLoader script.
+ */
 $getIncludes = __DIR__.'/compile-includes.php';
-$outputPath  = dirname(dirname(__DIR__)).'/var/compiled.php';
+$config      = include dirname(__DIR__).'/config.php';
+$outputPath  = $config['var'].'/compiled.php';
 
+/*
+ * run compilation
+ */
 $command = new PreCompileCommand();
-$command->run( new ArrayInput(
-    array(
-        '--config' => $getIncludes,
-        '--output' => $outputPath,
-        '--strip_comments' => 1,
-    )
-), new NullOutput);
+$command->run(
+    new ArrayInput([
+            '--config' => $getIncludes,
+            '--output' => $outputPath,
+            '--strip_comments' => 1,
+        ]),
+    new NullOutput
+);
