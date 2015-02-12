@@ -61,7 +61,7 @@ $routes->group(
 /*
  * add sample controller
  */
-$routes->any( '/sample*', SampleController::class);
+$routes->any( '/sample{*}', SampleController::class);
 
 /* -------------------
  * create router stack 
