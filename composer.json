@@ -11,6 +11,7 @@
   "minimum-stability": "dev",
   "require": {
     "php": ">=5.3.3",
+    "classpreloader/classpreloader": "~1.0",
     "tuum/web":"dev-master"
   },
   "repositories": [
