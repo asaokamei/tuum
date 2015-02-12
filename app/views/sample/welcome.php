@@ -3,7 +3,7 @@ use Tuum\Web\Viewer\View;
 
 /** @var \Tuum\Web\Viewer\View $view */
 
-$name = $view['name'];
+$name = $view->data['name'];
 
 ?>
 <?= $this->render('layout/header', [
@@ -17,8 +17,5 @@ $name = $view['name'];
     <input type="text" name="name" value="<?= $name; ?>" />
     <input type="submit" value="say hello" />
 </form>
-<?php
-var_dump($view);
-?>
 
 <?= $this->render('layout/footer'); ?>

@@ -2,7 +2,7 @@
 use Tuum\Web\Viewer\View;
 /** @var $view \Tuum\Web\Viewer\View */
 
-$name = $view['name'];
+$name = $view->data['name'];
 
 ?>
 <?= $this->render('layout/header', [

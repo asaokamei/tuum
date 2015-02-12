@@ -18,8 +18,5 @@ use Tuum\Web\Viewer\View;
     <input type="text" name="message" value="message" />
     <input type="submit" value="jump" />
 </form>
-<?php
-var_dump($view);
-?>
 
 <?= $this->render('layout/footer'); ?>
