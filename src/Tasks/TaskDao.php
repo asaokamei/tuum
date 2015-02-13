@@ -54,23 +54,39 @@ class TaskDao
      */
     protected function save()
     {
-        $fp = fopen($this->task_file, 'wb+');
-        rewind($fp);
-        foreach($this->tasks as $task) {
-            fputcsv($fp, $task);
+        $fp = new \SplFileObject($this->task_file, 'wb+');
+        if($fp->flock(LOCK_EX)) {
+            $fp->ftruncate(0);
+            $fp->rewind();
+            foreach($this->tasks as $task) {
+                if(!empty($task)) {
+                    $fp->fputcsv($task);
+                }
+            }
+            $fp->flock(LOCK_UN);
         }
+        $fp = null;
     }
-    
+
+    /**
+     * load tasks from csv file.
+     */
     protected function load()
     {
         if(!file_exists($this->task_file)) {
             return;
         }
-        $fp = fopen($this->task_file, 'rb');
-        while($csv = fgetcsv($fp)) {
-            $this->tasks[] = $csv;
-            $this->max_task_id = $this->max_task_id < $csv[0] ? $csv[0] :$this->max_task_id;   
+        $fp = new \SplFileObject($this->task_file, 'rb');
+        if($fp->flock(LOCK_EX)) {
+            $fp->setFlags(\SplFileObject::READ_CSV);
+            foreach($fp as $csv) {
+                if($csv===[null]) continue;
+                $this->tasks[] = $csv;
+                $this->max_task_id = $this->max_task_id < $csv[0] ? $csv[0] :$this->max_task_id;
+            }
+            $fp->flock(LOCK_UN);
         }
+        $fp = null;
     }
 
     /**
