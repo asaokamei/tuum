@@ -1,6 +1,7 @@
 <?php
 
+use Tuum\Locator\Locator;
 use Tuum\View\Tuum\Renderer;
 use Tuum\Web\App;
 
-return Renderer::forge($app->get(App::TEMPLATE_DIR));
+return new Renderer(new Locator($app->get(App::TEMPLATE_DIR)));
