@@ -40,10 +40,12 @@ class TaskStack implements MiddlewareInterface
      */
     public function __invoke($request)
     {
-        if(!$newReq = $this->isMatch($request)) {
+        if(!$matched = $this->isMatch($request)) {
             return $this->execNext($request);
         }
-        $request = $newReq;
+        if(isset($matched['matched'])) {
+            $request = $request->withPathToMatch($matched['matched'], $matched['trailing']);
+        }
         $this->dispatcher->setRoute(new Route(['handle' => $this->controller]));
         $app = $request->getWebApp()->cloneApp();
         $app->prepend($this->dispatcher);
