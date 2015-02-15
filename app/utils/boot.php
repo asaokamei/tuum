@@ -46,7 +46,8 @@ return function( array $config ) {
 
     // to use Flysystem, use the next line. 
     //$locator = new \Tuum\Locator\UnionManager($config['config']);
-    $locator = new Locator($project_root.'/vendor/tuum/web/scripts');
+    $locator = new Locator();
+    $locator->addRoot($project_root.'/vendor/tuum/web/scripts');
     $locator->addRoot($config['config']);
     $app = new Web(new Container($locator));
 
