@@ -9,13 +9,13 @@ require_once( dirname( __DIR__ ) . '/vendor/autoload.php' );
 
 date_default_timezone_set('Asia/Tokyo');
 
-// xhprof profiling
-include __DIR__.'/utils/xhprof.php';
-
 /*
  * get configuration
  */
 $config = include __DIR__.'/config.php';
+
+// xhprof profiling
+include __DIR__.'/utils/xhprof.php';
 
 /*
  * boot $app

@@ -40,4 +40,9 @@ return [
         __DIR__.'/routes.php',
         __DIR__.'/route-tasks.php',
     ],
+    
+    /*
+     * xh-profiler limit time
+     */
+    'xhprof-limit' => '1.0',
 ];

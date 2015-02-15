@@ -10,11 +10,11 @@ if (!function_exists('xhprof_enable')) {
 /*
  * starting xh-profiler
  */
-call_user_func(function () {
+call_user_func(function () use($config) {
 
     xhprof_enable();
     $start_time = microtime(true);
-    $slow_limit = 1.0; // in seconds
+    $slow_limit = isset($config['xhprof-limit']) ? $config['xhprof-limit']: 1.0; // in seconds
     $app_name   = 'TuumPHP';
     $prof_root  = '/usr/local/Cellar/php56-xhprof/254eb24';
 
