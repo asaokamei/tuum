@@ -15,7 +15,7 @@ $config = ClassLoader::getIncludes(function( ClassLoader $loader) {
     $loader->register();
     $config = include(dirname(__DIR__).'/config.php');
 
-    $boot = include(dirname(__DIR__).'/boot.php');
+    $boot = include(dirname(__DIR__) . '/boot.php');
     /** @var Closure $boot */
     $app  = $boot($config);
     $request  = RequestFactory::fromPath('compile');

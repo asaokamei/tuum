@@ -20,8 +20,8 @@ $config = include __DIR__.'/config.php';
 /*
  * boot $app
  */
-$boot = include __DIR__.'/boot.php';
-$boot = include __DIR__.'/boot-prep.php';
+$boot = include __DIR__ . '/utils/boot.php';
+$boot = include __DIR__ . '/utils/boot-prep.php';
 $app  = $boot($config);
 
 /*

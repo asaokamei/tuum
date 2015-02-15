@@ -16,22 +16,24 @@ return function( array $config ) {
     // default configuration
     // -----------------------------------------------
     
+    $app_root       = dirname(__DIR__);
+    $project_root   = dirname($app_root);
     $default_config = [
         
         // default routes file to set up router.
-        'routes' => __DIR__.'/routes.php',
+        'routes' => $app_root.'/routes.php',
         
         // default config directory. 
-        'config' => __DIR__.'/config',
+        'config' => $app_root.'/config',
         
         // default view/template directory.
-        'views'  => __DIR__.'/views',
+        'views'  => $app_root.'/views',
         
         // default document/resource directory.
-        'docs'   => __DIR__.'/docs',
+        'docs'   => $app_root.'/docs',
         
         // default var (cache, logs, etc.) directory.
-        'var'    => dirname(__DIR__).'/var',
+        'var'    => $project_root.'/var',
         
         // default debug is off. 
         'debug'  => false,
@@ -44,7 +46,7 @@ return function( array $config ) {
 
     // to use Flysystem, use the next line. 
     //$locator = new \Tuum\Locator\UnionManager($config['config']);
-    $locator = new Locator(dirname(__DIR__).'/vendor/tuum/web/scripts');
+    $locator = new Locator($project_root.'/vendor/tuum/web/scripts');
     $locator->addRoot($config['config']);
     $app = new Web(new Container($locator));
 
