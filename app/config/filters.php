@@ -1,17 +1,41 @@
 <?php
 
+use League\Container\Container;
+use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
+use Tuum\Locator\Locator;
+use Tuum\View\ErrorView;
+use Tuum\View\Tuum\Renderer;
 use Tuum\Web\App;
-use Tuum\Web\Web;
+use Tuum\Web\Psr7\Respond;
 
-/** @var Web $app */
+/** @var Container $dic */
 
-/*
- * set up services and filters.
+/**
+ * Logger
+ *
+ * use the de fact MonoLog.
  */
+$app->set(App::LOGGER, function () use ($dic) {
 
-// services
-$app->set(App::LOGGER, $app->get('service/logger'));
-$app->set(App::RENDER_ENGINE, $app->get('service/renderer') );
+    $var_dir = $dic->get(App::VAR_DATA_DIR) . '/log/app.log';
+    $logger  = new Logger('log');
+    $logger->pushHandler(new StreamHandler($var_dir, Logger::DEBUG));
+    return $logger;
+});
 
-// filters
-$app->set(App::CS_RF_FILTER, $app->get('filter/csrf') );
+/**
+ * rendering error page. should overwrite this service.
+ */
+$dic->add('service/error-renderer', function () use ($dic) {
+
+    $view = new ErrorView($dic->get(App::RENDER_ENGINE), $dic->get(App::DEBUG));
+    $view->setLogger($dic->get(App::LOGGER));
+
+    // error template files for each error status code.
+    $view->error_files[Respond::ACCESS_DENIED] = 'errors/forbidden';
+    $view->error_files[Respond::FILE_NOT_FOUND] = 'errors/not-found';
+
+    return $view;
+});
+

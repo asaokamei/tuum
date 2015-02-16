@@ -1,6 +1,4 @@
 <?php
-use Tuum\Locator\Container;
-use Tuum\Locator\Locator;
 use Tuum\Web\App;
 use Tuum\Web\Web;
 
@@ -24,19 +22,19 @@ return function( array $config ) {
         'routes' => $app_root.'/routes.php',
         
         // default config directory. 
-        'config' => $app_root.'/config',
+        App::CONFIG_DIR => $app_root.'/config',
         
         // default view/template directory.
-        'views'  => $app_root.'/views',
+        App::TEMPLATE_DIR  => $app_root.'/views',
         
         // default document/resource directory.
-        'docs'   => $app_root.'/docs',
+        App::DOCUMENT_DIR   => $app_root.'/docs',
         
         // default var (cache, logs, etc.) directory.
-        'var'    => $project_root.'/var',
+        App::VAR_DATA_DIR    => $project_root.'/var',
         
         // default debug is off. 
-        'debug'  => false,
+        App::DEBUG  => false,
     ];
     $config += $default_config;
 
@@ -46,32 +44,31 @@ return function( array $config ) {
 
     // to use Flysystem, use the next line. 
     //$locator = new \Tuum\Locator\UnionManager($config['config']);
-    $locator = new Locator();
-    $locator->addRoot($project_root.'/vendor/tuum/web/scripts');
-    $locator->addRoot($config['config']);
-    $app = new Web(new Container($locator));
+    /** @var Web $app */
+    $app = include($project_root.'/vendor/tuum/web/scripts/boot.php');
+    $app->setConfigRoot($config[App::CONFIG_DIR]);
 
     // -----------------------------------------------
     // set up directories
     // -----------------------------------------------
     
-    $app->set(App::CONFIG_DIR,   $config['config']);
-    $app->set(App::TEMPLATE_DIR, $config['views']);
-    $app->set(App::DOCUMENT_DIR, $config['docs']);
-    $app->set(App::VAR_DATA_DIR, $config['var']);
-    $app->set(App::DEBUG,        $config['debug']);
+    $app->set(App::CONFIG_DIR,   $config[App::CONFIG_DIR]);
+    $app->set(App::TEMPLATE_DIR, $config[App::TEMPLATE_DIR]);
+    $app->set(App::DOCUMENT_DIR, $config[App::DOCUMENT_DIR]);
+    $app->set(App::VAR_DATA_DIR, $config[App::VAR_DATA_DIR]);
+    $app->set(App::DEBUG,        $config[App::DEBUG]);
 
     // -----------------------------------------------
     // set up services and filters
     // -----------------------------------------------
     
-    $app->get('filters');
+    $app->configure('filters');
 
     // -----------------------------------------------
     // set up stacks
     // -----------------------------------------------
     
-    $stacks = $app->get('stacks');
+    $stacks = $app->configure('stacks');
     foreach($stacks as $stack) {
         $app->push($app->get($stack));
     }
