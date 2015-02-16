@@ -33,7 +33,7 @@ return [
     /*
      * debug is on (true) or off (false).
      */
-    App::DEBUG  => true,
+    App::DEBUG  => false,
 
     /*
      * routes files
