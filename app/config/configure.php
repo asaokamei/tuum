@@ -3,9 +3,7 @@
 use League\Container\Container;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
-use Tuum\Locator\Locator;
 use Tuum\View\ErrorView;
-use Tuum\View\Tuum\Renderer;
 use Tuum\Web\App;
 use Tuum\Web\Psr7\Respond;
 
@@ -39,3 +37,25 @@ $dic->add('service/error-renderer', function () use ($dic) {
     return $view;
 });
 
+/**
+ * stack list.
+ *
+ * return list of stacks to push.
+ *
+ */
+$dic->add('stacks', function () {
+    return [
+        /*
+         * basic stack
+         */
+        'stack/error-stack',
+        'stack/session-stack',
+        'stack/cs-rf-stack',
+        'stack/view-stack',
+
+        /*
+         * handlers and releases
+         */
+        'stack/url-mapper-handler',
+    ];
+});

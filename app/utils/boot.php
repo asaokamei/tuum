@@ -42,11 +42,20 @@ return function( array $config ) {
     // build web application, $app
     // -----------------------------------------------
 
-    // to use Flysystem, use the next line. 
-    //$locator = new \Tuum\Locator\UnionManager($config['config']);
     /** @var Web $app */
-    $app = include($project_root.'/vendor/tuum/web/scripts/boot.php');
-    $app->setConfigRoot($config[App::CONFIG_DIR]);
+    $tuum_scripts = $project_root.'/vendor/tuum/web/scripts';
+    $app = include($tuum_scripts.'/boot.php');
+
+    // -----------------------------------------------
+    //  configure $app
+    // -----------------------------------------------
+
+    // use Tuum's basic web configuration.
+    $app->configure($tuum_scripts.'/configure');
+
+    // use the config dir's configure.
+    $config_dir = $config[App::CONFIG_DIR];
+    $app->configure($config_dir . '/configure');
 
     // -----------------------------------------------
     // set up directories
@@ -59,16 +68,10 @@ return function( array $config ) {
     $app->set(App::DEBUG,        $config[App::DEBUG]);
 
     // -----------------------------------------------
-    // set up services and filters
-    // -----------------------------------------------
-    
-    $app->configure('filters');
-
-    // -----------------------------------------------
     // set up stacks
     // -----------------------------------------------
     
-    $stacks = $app->configure('stacks');
+    $stacks = $app->get('stacks');
     foreach($stacks as $stack) {
         $app->push($app->get($stack));
     }
