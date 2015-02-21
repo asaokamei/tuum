@@ -1,12 +1,14 @@
 <?php
 
 use Demo\Tasks\TaskStack;
+use League\Container\Container;
 use Tuum\Web\Stack\Dispatcher;
 use Tuum\Web\Web;
 
 /** @var Web $app */
+/** @var Container $dic */
 
-if(isset($views) || $views) {
+if(isset($views) && $views) {
     $app->setRenderRoot($views);
 }
 
