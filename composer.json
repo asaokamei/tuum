@@ -14,7 +14,8 @@
     "classpreloader/classpreloader": "~1.0",
     "tuum/web":"dev-master",
     "tuum/form":"dev-master",
-    "tuum/byof": " dev-master"
+    "tuum/byof": " dev-master",
+    "robmorgan/phinx": "0.4.*"
   },
   "repositories": [
     {
