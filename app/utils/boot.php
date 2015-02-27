@@ -26,17 +26,17 @@ return function( array $config ) {
     
     $app->configure($config_dir . '/configure');
 
-    // debug configuration
-
-    if($config[Web::DEBUG]) {  
-        $app->configure($config_dir.'/configure-debug');
-    }
-
     // environment specific configuration
 
     /** @noinspection PhpIncludeInspection */
     foreach($config['environment'] as $env) {
         $app->configure($config_dir."/{$env}/configure");
+    }
+
+    // debug configuration
+
+    if($config[Web::DEBUG]) {
+        $app->configure($config_dir.'/configure-debug');
     }
 
     /**

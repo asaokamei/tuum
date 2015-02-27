@@ -13,8 +13,11 @@ use Tuum\Web\Web;
 
 /** @var Logger $logger */
 $logger = $dic->get(Web::LOGGER);
-$logger->pushHandler(
-    new BrowserConsoleHandler()
-);
 
-$logger->info('debug mode.');
+if($logger) {
+    $logger->pushHandler(
+        new BrowserConsoleHandler()
+    );
+    $logger->info('debug mode.');
+}
+
