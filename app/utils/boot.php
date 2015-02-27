@@ -32,13 +32,14 @@ return function( array $config ) {
      */
 
     /** @var Web $app */
-    // use Tuum's basic web configuration.
-
     $app = include($tuum_scripts.'/boot.php');
+
+    // use Tuum's basic web configuration.
+    
     $app->configure($tuum_scripts.'/configure');
 
     // set up directories
-
+    
     $app->set(App::CONFIG_DIR,   $config[App::CONFIG_DIR]);
     $app->set(App::TEMPLATE_DIR, $config[App::TEMPLATE_DIR]);
     $app->set(App::DOCUMENT_DIR, $config[App::DOCUMENT_DIR]);
@@ -46,15 +47,19 @@ return function( array $config ) {
     $app->set(App::DEBUG,        $config[App::DEBUG]);
 
     // use the config directory's configure.
+    
     $config_dir = $config[App::CONFIG_DIR];
     $app->configure($config_dir . '/configure');
     
     // debug configuration
+    
     if($config[App::DEBUG]) {
         $app->configure($config_dir.'/configure-debug');
     }
     
     // environment specific configuration
+    
+    /** @noinspection PhpIncludeInspection */
     if( $environment = (array) include($config['environment'])) {
         foreach($environment as $env) {
             $app->configure($config_dir."/{$env}/configure");
@@ -66,7 +71,7 @@ return function( array $config ) {
      */
 
     // set up stacks
-
+    
     $stacks = $app->get('stacks');
     foreach($stacks as $stack) {
         $app->push($app->get($stack));
