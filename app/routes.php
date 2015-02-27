@@ -6,9 +6,9 @@ use Tuum\Routing\RouteCollector;
 use Tuum\Web\Psr7\Request;
 use Tuum\Web\Stack\Dispatcher;
 use Tuum\Web\Stack\RouterStack;
-use Tuum\Web\Web;
+use Tuum\Web\Application;
 
-/** @var Web $app */
+/** @var Application $app */
 
 // --------------------
 // create basic routers

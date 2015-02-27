@@ -1,14 +1,14 @@
 <?php
 
 use Tuum\Web\App;
-use Tuum\Web\Web;
+use Tuum\Web\Application;
 
 /**
  * function to pre-process before booting a web application.
  * $boot must exist.
  *
  * @param array $config
- * @return Web
+ * @return Application
  */
 
 return function( array $config ) use($boot) {

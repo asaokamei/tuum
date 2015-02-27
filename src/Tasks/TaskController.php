@@ -5,7 +5,7 @@ use Tuum\Web\App;
 use Tuum\Web\Controller\AbstractController;
 use Tuum\Web\Controller\RouteDispatchTrait;
 use Tuum\Web\Psr7\Response;
-use Tuum\Web\Web;
+use Tuum\Web\Application;
 
 class TaskController extends AbstractController
 {
@@ -25,7 +25,7 @@ class TaskController extends AbstractController
     }
 
     /**
-     * @param Web $app
+     * @param Application $app
      * @return TaskController
      */
     public static function forge($app)

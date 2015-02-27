@@ -1,11 +1,11 @@
 <?php
 use Tuum\Web\Psr7\RequestFactory;
-use Tuum\Web\Web;
+use Tuum\Web\Application;
 
 require_once( dirname( __DIR__ ) . '/vendor/autoload.php' );
 
 /** @var \Closure $boot */
-/** @var Web $app */
+/** @var Application $app */
 
 date_default_timezone_set('Asia/Tokyo');
 

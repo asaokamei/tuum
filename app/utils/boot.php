@@ -1,12 +1,12 @@
 <?php
 use Tuum\Web\App;
-use Tuum\Web\Web;
+use Tuum\Web\Application;
 
 /**
  * function to boot web application.
  *
  * @param array $config
- * @return Web
+ * @return Application
  */
 return function( array $config ) {
 
@@ -31,7 +31,7 @@ return function( array $config ) {
      * build and configure web application, $app.
      */
 
-    /** @var Web $app */
+    /** @var Application $app */
     $app = include($tuum_scripts.'/boot.php');
 
     // use Tuum's basic web configuration.

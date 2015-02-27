@@ -1,17 +1,17 @@
 <?php
 
-use Tuum\Web\Web;
+use Tuum\Web\Application;
 
 /**
  * an experimental boot script to use cached/serialized $app. 
  *
  * @param array $config
- * @return Web
+ * @return Application
  */
 
 return function( array $config ) use($boot) {
 
-    /** @var Web $app */
+    /** @var Application $app */
     
     /*
      * build $boot.

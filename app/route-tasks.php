@@ -1,8 +1,8 @@
 <?php
 
-use Tuum\Web\Web;
+use Tuum\Web\Application;
 
-/** @var Web $app */
+/** @var Application $app */
 
 $task_dir = dirname(__DIR__).'/src/Tasks';
 

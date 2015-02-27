@@ -3,9 +3,9 @@
 use Demo\Tasks\TaskStack;
 use League\Container\Container;
 use Tuum\Web\Stack\Dispatcher;
-use Tuum\Web\Web;
+use Tuum\Web\Application;
 
-/** @var Web $app */
+/** @var Application $app */
 /** @var Container $dic */
 
 if(isset($views) && $views) {
