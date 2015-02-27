@@ -37,25 +37,3 @@ $dic->add('service/error-renderer', function () use ($dic) {
     return $view;
 });
 
-/**
- * stack list.
- *
- * return list of stacks to push.
- *
- */
-$dic->add('stacks', function () {
-    return [
-        /*
-         * basic stack
-         */
-        'stack/error-stack',
-        'stack/session-stack',
-        'stack/cs-rf-stack',
-        'stack/view-stack',
-
-        /*
-         * handlers and releases
-         */
-        'stack/url-mapper-handler',
-    ];
-});
