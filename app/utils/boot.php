@@ -14,18 +14,7 @@ return function( array $config ) {
      * default configuration.
      */
 
-    $app_root       = dirname(__DIR__);
-    $project_root   = dirname($app_root);
-    $tuum_scripts   = $project_root.'/vendor/tuum/web/scripts';
-    $default_config = [
-        'routes'          => $app_root . '/routes.php',
-        Web::CONFIG_DIR   => $app_root . '/config',
-        Web::TEMPLATE_DIR => $app_root . '/views',
-        Web::DOCUMENT_DIR => $app_root . '/docs',
-        Web::VAR_DATA_DIR => $project_root . '/var',
-        Web::DEBUG        => false,
-    ];
-    $config += $default_config;
+    $tuum_scripts   = dirname(dirname(__DIR__)).'/vendor/tuum/web/scripts';
 
     /**
      * build and configure web application, $app.

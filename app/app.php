@@ -21,7 +21,8 @@ include __DIR__.'/utils/xhprof.php';
  * boot $app
  */
 $boot = include __DIR__ . '/utils/boot.php';
-$boot = include __DIR__ . '/utils/boot-prep.php';
+$boot = include __DIR__ . '/utils/boot-compiled.php';
+$boot = include __DIR__ . '/utils/boot-config.php';
 $app  = $boot($config);
 
 /*
