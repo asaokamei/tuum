@@ -10,16 +10,18 @@ use Tuum\Web\Psr7\Respond;
 /** @var Container $dic */
 
 /**
- * Logger
+ * shared Logger
  *
  * use the de fact MonoLog.
  */
-$app->set(App::LOGGER, function () use ($dic) {
-
-    $var_dir = $dic->get(App::VAR_DATA_DIR) . '/log/app.log';
-    $logger  = new Logger('log');
-    $logger->pushHandler(new StreamHandler($var_dir, Logger::DEBUG));
-    return $logger;
+$dic->singleton(
+    App::LOGGER, 
+    function () use ($dic) {
+    
+        $var_dir = $dic->get(App::VAR_DATA_DIR) . '/log/app.log';
+        $logger  = new Logger('log');
+        $logger->pushHandler(new StreamHandler($var_dir, Logger::DEBUG));
+        return $logger;
 });
 
 /**

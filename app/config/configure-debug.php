@@ -17,4 +17,4 @@ $logger->pushHandler(
     new BrowserConsoleHandler()
 );
 
-$logger->notice('debug mode.');
+$logger->info('debug mode.');

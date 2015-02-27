@@ -45,13 +45,20 @@ return function( array $config ) {
     $app->set(App::VAR_DATA_DIR, $config[App::VAR_DATA_DIR]);
     $app->set(App::DEBUG,        $config[App::DEBUG]);
 
-    // use the config dir's configure.
-
+    // use the config directory's configure.
     $config_dir = $config[App::CONFIG_DIR];
     $app->configure($config_dir . '/configure');
     
+    // debug configuration
     if($config[App::DEBUG]) {
         $app->configure($config_dir.'/configure-debug');
+    }
+    
+    // environment specific configuration
+    if( $environment = (array) include($config['environment'])) {
+        foreach($environment as $env) {
+            $app->configure($config_dir."/{$env}/configure");
+        }
     }
 
     /**
