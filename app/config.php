@@ -46,7 +46,7 @@ return [
     /*
      * environment file. should return an array of environments.
      */
-    'environment' => dirname(__DIR__).'/var/env.php',
+    'env_file' => dirname(__DIR__).'/var/env.php',
     
     /*
      * xh-profiler limit time

@@ -35,10 +35,8 @@ return function( array $config ) {
     // environment specific configuration
 
     /** @noinspection PhpIncludeInspection */
-    if( $environment = (array) include($config['environment'])) {
-        foreach($environment as $env) {
-            $app->configure($config_dir."/{$env}/configure");
-        }
+    foreach($config['environment'] as $env) {
+        $app->configure($config_dir."/{$env}/configure");
     }
 
     /**

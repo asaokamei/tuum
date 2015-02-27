@@ -19,6 +19,7 @@ return function( array $config ) use($boot) {
     $project_root   = dirname($app_root);
     $default_config = [
         'routes'          => $app_root . '/routes.php',
+        'environment'     => [],
         Web::CONFIG_DIR   => $app_root . '/config',
         Web::TEMPLATE_DIR => $app_root . '/views',
         Web::DOCUMENT_DIR => $app_root . '/docs',
@@ -27,6 +28,12 @@ return function( array $config ) use($boot) {
     ];
     $config += $default_config;
 
+    // set up environment. read it from env_file.
+    
+    if(isset($config['env_file']) && file_exists($config['env_file'])) {
+        $config['environment'] = (array) include($config['env_file']);
+    }
+    
     /*
      * build $boot.
      */
