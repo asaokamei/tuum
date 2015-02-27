@@ -39,8 +39,8 @@ return [
      * routes files
      */
     'routes' => [
-        __DIR__.'/routes.php',
-        __DIR__.'/route-tasks.php',
+        __DIR__.'/routes',
+        __DIR__.'/route-tasks',
     ],
     
     /*

@@ -33,7 +33,7 @@ return function( array $config ) use($boot) {
 
     $route_files = (array) $config['routes'];
     foreach($route_files as $routes ) {
-        $app->push($app->execute($routes));
+        $app->push($app->configure($routes));
     }
 
     return $app;
