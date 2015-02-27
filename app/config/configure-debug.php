@@ -3,7 +3,7 @@
 use League\Container\Container;
 use Monolog\Handler\BrowserConsoleHandler;
 use Monolog\Logger;
-use Tuum\Web\App;
+use Tuum\Web\Web;
 
 /** @var Container $dic */
 
@@ -12,7 +12,7 @@ use Tuum\Web\App;
  */
 
 /** @var Logger $logger */
-$logger = $dic->get(App::LOGGER);
+$logger = $dic->get(Web::LOGGER);
 $logger->pushHandler(
     new BrowserConsoleHandler()
 );

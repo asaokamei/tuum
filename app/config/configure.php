@@ -4,7 +4,7 @@ use League\Container\Container;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use Tuum\View\ErrorView;
-use Tuum\Web\App;
+use Tuum\Web\Web;
 use Tuum\Web\Psr7\Respond;
 
 /** @var Container $dic */
@@ -15,10 +15,10 @@ use Tuum\Web\Psr7\Respond;
  * use the de fact MonoLog.
  */
 $dic->singleton(
-    App::LOGGER, 
+    Web::LOGGER, 
     function () use ($dic) {
     
-        $var_dir = $dic->get(App::VAR_DATA_DIR) . '/log/app.log';
+        $var_dir = $dic->get(Web::VAR_DATA_DIR) . '/log/app.log';
         $logger  = new Logger('log');
         $logger->pushHandler(new StreamHandler($var_dir, Logger::DEBUG));
         return $logger;
@@ -29,8 +29,8 @@ $dic->singleton(
  */
 $dic->add('service/error-renderer', function () use ($dic) {
 
-    $view = new ErrorView($dic->get(App::RENDER_ENGINE), $dic->get(App::DEBUG));
-    $view->setLogger($dic->get(App::LOGGER));
+    $view = new ErrorView($dic->get(Web::RENDER_ENGINE), $dic->get(Web::DEBUG));
+    $view->setLogger($dic->get(Web::LOGGER));
 
     // error template files for each error status code.
     $view->error_files[Respond::ACCESS_DENIED] = 'errors/forbidden';

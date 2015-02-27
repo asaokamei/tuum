@@ -1,12 +1,12 @@
 <?php
 use League\Container\Container;
 use Monolog\Logger;
-use Tuum\Web\App;
+use Tuum\Web\Web;
 
 /** @var Container $dic */
 
 /** @var Logger $logger */
-$logger = $dic->get(App::LOGGER);
+$logger = $dic->get(Web::LOGGER);
 $logger->info('local configuration.');
 
 /**

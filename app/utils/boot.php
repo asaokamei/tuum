@@ -1,5 +1,5 @@
 <?php
-use Tuum\Web\App;
+use Tuum\Web\Web;
 use Tuum\Web\Application;
 
 /**
@@ -19,11 +19,11 @@ return function( array $config ) {
     $tuum_scripts   = $project_root.'/vendor/tuum/web/scripts';
     $default_config = [
         'routes'          => $app_root . '/routes.php',
-        App::CONFIG_DIR   => $app_root . '/config',
-        App::TEMPLATE_DIR => $app_root . '/views',
-        App::DOCUMENT_DIR => $app_root . '/docs',
-        App::VAR_DATA_DIR => $project_root . '/var',
-        App::DEBUG        => false,
+        Web::CONFIG_DIR   => $app_root . '/config',
+        Web::TEMPLATE_DIR => $app_root . '/views',
+        Web::DOCUMENT_DIR => $app_root . '/docs',
+        Web::VAR_DATA_DIR => $project_root . '/var',
+        Web::DEBUG        => false,
     ];
     $config += $default_config;
 
@@ -40,20 +40,20 @@ return function( array $config ) {
 
     // set up directories
     
-    $app->set(App::CONFIG_DIR,   $config[App::CONFIG_DIR]);
-    $app->set(App::TEMPLATE_DIR, $config[App::TEMPLATE_DIR]);
-    $app->set(App::DOCUMENT_DIR, $config[App::DOCUMENT_DIR]);
-    $app->set(App::VAR_DATA_DIR, $config[App::VAR_DATA_DIR]);
-    $app->set(App::DEBUG,        $config[App::DEBUG]);
+    $app->set(Web::CONFIG_DIR,   $config[Web::CONFIG_DIR]);
+    $app->set(Web::TEMPLATE_DIR, $config[Web::TEMPLATE_DIR]);
+    $app->set(Web::DOCUMENT_DIR, $config[Web::DOCUMENT_DIR]);
+    $app->set(Web::VAR_DATA_DIR, $config[Web::VAR_DATA_DIR]);
+    $app->set(Web::DEBUG,        $config[Web::DEBUG]);
 
     // use the config directory's configure.
     
-    $config_dir = $config[App::CONFIG_DIR];
+    $config_dir = $config[Web::CONFIG_DIR];
     $app->configure($config_dir . '/configure');
     
     // debug configuration
     
-    if($config[App::DEBUG]) {
+    if($config[Web::DEBUG]) {
         $app->configure($config_dir.'/configure-debug');
     }
     

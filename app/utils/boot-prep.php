@@ -1,6 +1,6 @@
 <?php
 
-use Tuum\Web\App;
+use Tuum\Web\Web;
 use Tuum\Web\Application;
 
 /**
@@ -17,8 +17,8 @@ return function( array $config ) use($boot) {
      * read compiled php file,
      * if debug is false, and compiled.php exists.
      */
-    $compiled = $config[App::VAR_DATA_DIR].'/compiled.php';
-    if(!$config[App::DEBUG] && file_exists($compiled)) {
+    $compiled = $config[Web::VAR_DATA_DIR].'/compiled.php';
+    if(!$config[Web::DEBUG] && file_exists($compiled)) {
         include_once($compiled);
     }
 

@@ -6,34 +6,34 @@
  * @return array
  */
 
-use Tuum\Web\App;
+use Tuum\Web\Web;
 
 return [
 
     /*
      * config directory.
      */
-    App::CONFIG_DIR => __DIR__.'/config',
+    Web::CONFIG_DIR => __DIR__.'/config',
 
     /*
      * view/template directory.
      */
-    App::TEMPLATE_DIR  => __DIR__.'/views',
+    Web::TEMPLATE_DIR  => __DIR__.'/views',
 
     /*
      * document/resource directory.
      */
-    App::DOCUMENT_DIR   => __DIR__.'/docs',
+    Web::DOCUMENT_DIR   => __DIR__.'/docs',
 
     /*
      * variables (cache, logs, etc.) directory.
      */
-    App::VAR_DATA_DIR    => dirname(__DIR__).'/var',
+    Web::VAR_DATA_DIR    => dirname(__DIR__).'/var',
 
     /*
      * debug is on (true) or off (false).
      */
-    App::DEBUG  => true,
+    Web::DEBUG  => true,
 
     /*
      * routes files
