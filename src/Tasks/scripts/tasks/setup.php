@@ -4,12 +4,14 @@ use Demo\Tasks\TaskStack;
 use League\Container\Container;
 use Tuum\Web\Stack\Dispatcher;
 use Tuum\Web\Application;
+use Tuum\Web\Web;
 
 /** @var Application $app */
 /** @var Container $dic */
 
 if(isset($views) && $views) {
-    $app->setRenderRoot($views);
+    $engine = $app->get(Web::RENDER_ENGINE);
+    $engine->locator->addRoot($views);
 }
 
 $taskStack = new TaskStack(new Dispatcher($app), 'Demo\Tasks\TaskController');
