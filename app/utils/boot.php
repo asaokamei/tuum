@@ -18,24 +18,12 @@ return function( array $config ) {
     $project_root   = dirname($app_root);
     $tuum_scripts   = $project_root.'/vendor/tuum/web/scripts';
     $default_config = [
-        
-        // default routes file to set up router.
-        'routes' => $app_root.'/routes.php',
-        
-        // default config directory. 
-        App::CONFIG_DIR => $app_root.'/config',
-        
-        // default view/template directory.
-        App::TEMPLATE_DIR  => $app_root.'/views',
-        
-        // default document/resource directory.
-        App::DOCUMENT_DIR   => $app_root.'/docs',
-        
-        // default var (cache, logs, etc.) directory.
-        App::VAR_DATA_DIR    => $project_root.'/var',
-        
-        // default debug is off. 
-        App::DEBUG  => false,
+        'routes'          => $app_root . '/routes.php',
+        App::CONFIG_DIR   => $app_root . '/config',
+        App::TEMPLATE_DIR => $app_root . '/views',
+        App::DOCUMENT_DIR => $app_root . '/docs',
+        App::VAR_DATA_DIR => $project_root . '/var',
+        App::DEBUG        => false,
     ];
     $config += $default_config;
 
@@ -49,11 +37,6 @@ return function( array $config ) {
     $app = include($tuum_scripts.'/boot.php');
     $app->configure($tuum_scripts.'/configure');
 
-    // use the config dir's configure.
-
-    $config_dir = $config[App::CONFIG_DIR];
-    $app->configure($config_dir . '/configure');
-
     // set up directories
 
     $app->set(App::CONFIG_DIR,   $config[App::CONFIG_DIR]);
@@ -61,6 +44,15 @@ return function( array $config ) {
     $app->set(App::DOCUMENT_DIR, $config[App::DOCUMENT_DIR]);
     $app->set(App::VAR_DATA_DIR, $config[App::VAR_DATA_DIR]);
     $app->set(App::DEBUG,        $config[App::DEBUG]);
+
+    // use the config dir's configure.
+
+    $config_dir = $config[App::CONFIG_DIR];
+    $app->configure($config_dir . '/configure');
+    
+    if($config[App::DEBUG]) {
+        $app->configure($config_dir.'/configure-debug');
+    }
 
     /**
      * set up stacks and routes.
