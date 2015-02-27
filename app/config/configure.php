@@ -14,7 +14,7 @@ use Tuum\Web\Psr7\Respond;
  *
  * use the de fact MonoLog.
  */
-$dic->singleton(
+$app->set(
     Web::LOGGER, 
     function () use ($dic) {
     
@@ -22,12 +22,12 @@ $dic->singleton(
         $logger  = new Logger('log');
         $logger->pushHandler(new StreamHandler($var_dir, Logger::DEBUG));
         return $logger;
-});
+}, true);
 
 /**
  * rendering error page. should overwrite this service.
  */
-$dic->add('service/error-renderer', function () use ($dic) {
+$app->set('service/error-renderer', function () use ($dic) {
 
     $view = new ErrorView($dic->get(Web::RENDER_ENGINE), $dic->get(Web::DEBUG));
     $view->setLogger($dic->get(Web::LOGGER));
