@@ -1,12 +1,11 @@
 <?php
 
 use Demo\Site\SampleController;
-use Tuum\Router\Tuum\Router;
 use Tuum\Routing\RouteCollector;
 use Tuum\Web\Psr7\Request;
-use Tuum\Web\Stack\Dispatcher;
 use Tuum\Web\Stack\RouterStack;
 use Tuum\Web\Application;
+use Tuum\Web\Web;
 
 /** @var Application $app */
 
@@ -14,8 +13,11 @@ use Tuum\Web\Application;
 // create basic routers
 // --------------------
 
-$router = Router::forge();
-$routes = $router->getRouting();
+/** @var RouterStack $routeStack */
+/** @var RouteCollector $routes */
+
+$routeStack = $app->get(Web::ROUTER_STACK);
+$routes     = $routeStack->getRouting();
 
 // ----------
 // add routes
@@ -67,7 +69,6 @@ $routes->any( '/sample{*}', SampleController::class);
  * create router stack 
  */
 
-$routeStack = new RouterStack($router, new Dispatcher($app));
 $routeStack->setRoot('/');
 $routeStack->setRoot('/closure*');
 $routeStack->setRoot('/sample*');
