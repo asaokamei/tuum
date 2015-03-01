@@ -43,7 +43,17 @@ $dates = $this->service('dates');
     <dd><?= $forms->radioList('list2', [ 'a' => 'a is the first', 'b' => 'b is the second'], 'a'); ?></dd>
 
     <dt>Check List</dt>
-    <dd><?= $forms->checkList('list1', [ 'a' => '#Aaa', 'b' => '#Bbb', 'c' => '#Ccc', 'D' => '#Ddd' ], ['a', 'c']); ?></dd>
+    <dd><?= $forms->checkList('list1', [ 'a' => '#Aaa', 'b' => '#Bbb', 'c' => '#Ccc', 'd' => '#Ddd' ], ['a', 'c']); ?></dd>
+
+    <dt>Another List</dt>
+    <dd><?php
+        $list = [ 'a' => '#Aaa', 'b' => '#Bbb', 'c' => '#Ccc', 'd' => '#Ddd' ];
+        $checks = $forms->checkList('list1', $list, ['b', 'd']);
+        foreach($list as $val => $label) {
+            $box = $checks->getInput($val);
+            echo '◀<label>',$box,'Val:',$val,', Label:',$label,'</<label>▶ ';
+        }
+        ?></dd>
 
 </dl>
 
