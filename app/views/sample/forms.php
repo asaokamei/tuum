@@ -35,16 +35,16 @@ $dates = $this->service('dates');
     
     <dt>Select Box</dt>
     <dd><?= $forms->select('select-box',
-            Lists::forge(1, 10, 3)->setFormat(function($s) {return 'sel-'.$s;})
+            Lists::forge(1, 10, 3)->setFormat(function($s) {return 'selecting #'.$s;})
         ); ?>
     </dd>
     
-    <dt>Check List</dt>
-    <dd><?= $forms->checkList('list1', [ 'a' => 'a is the first', 'b' => 'b is the second'], 'b'); ?></dd>
-
     <dt>Radio List</dt>
     <dd><?= $forms->radioList('list2', [ 'a' => 'a is the first', 'b' => 'b is the second'], 'a'); ?></dd>
-    
+
+    <dt>Check List</dt>
+    <dd><?= $forms->checkList('list1', [ 'a' => '#Aaa', 'b' => '#Bbb', 'c' => '#Ccc', 'D' => '#Ddd' ], ['a', 'c']); ?></dd>
+
 </dl>
 
 <h2>Composite Date</h2>
