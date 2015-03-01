@@ -24,6 +24,7 @@
     <li><a href="sample/?name=TuumPHP" >sample welcome</a></li>
     <li><a href="sample/tuum" >sample hello world</a></li>
     <li><a href="sample/jump" >redirect with message</a></li>
+    <li><a href="sample/forms" >html form samples</a></li>
 </ul>
 
 <h3><a href="demoTasks" >Demo Task Application</a></h3>

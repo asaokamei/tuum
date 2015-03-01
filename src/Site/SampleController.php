@@ -26,6 +26,7 @@ class SampleController extends AbstractController
             '/'        => 'welcome',
             '/jump'   => 'jump',
             '/jumper' => 'jumper',
+            '/forms'  => 'forms',
             '/{name}' => 'hello',
         ];
     }
@@ -74,5 +75,14 @@ class SampleController extends AbstractController
             ->withMessage($message)
             ->asRedirectUri($basePath.'/jump')
             ;
+    }
+
+    /**
+     * @return Response
+     */
+    protected function onForms()
+    {
+        return $this->respond
+            ->asView('sample/forms');
     }
 }
