@@ -23,9 +23,20 @@ $dates = $this->service('dates');
 
 <ul>
     <li><?= $forms->text('a-text', 'pre value')->width('20em')->label('a simple text box'); ?></li>
-    <li><?= $forms->text('b-text')->width('20em')->placeholder('a required text')->required(); ?></li>
+    <li><?= $forms->textArea('b-text')->width('20em')->placeholder('a required text area')->required(); ?></li>
     <li><?= $forms->checkbox('checks', 1)->checked()->label('a check box'); ?></li>
     <li><?= $forms->radio('radio', 1)->checked()->label('a radio button'); ?></li>
+    <li>
+        <?= $forms->open()->method('post')->uploader(); ?>
+        <?= $forms->button()->value('a post form'); ?>
+        <?= $forms->button('reset')->value('a reset/cancel button'); ?>
+        <?= $forms->close(); ?>
+    </li>
+    <li>
+        <?= $forms->open()->method('put')->uploader(); ?>
+        <?= $forms->button()->value('a put form has a hidden tag sending "put" method'); ?>
+        <?= $forms->close(); ?>
+    </li>
 </ul>
 
 
@@ -65,7 +76,7 @@ $dates = $this->service('dates');
     <dd><?= $dates->selYear('year', YearList::forge(2015, 2017)->setFormat(YearList::formatJpnGenGou())); ?></dd>
 
     <dt>Year/Month</dt>
-    <dd><?= $dates->dateYM('ym'); ?></dd>
+    <dd><?= $dates->dateYM('ym')->head('---'); ?></dd>
 
     <dt>Month Day, Year</dt>
     <dd><?= $dates
