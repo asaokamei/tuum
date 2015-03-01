@@ -3,6 +3,7 @@
 use Tuum\Form\Dates;
 use Tuum\Form\Forms;
 use Tuum\Form\Lists\Lists;
+use Tuum\Form\Lists\MonthList;
 use Tuum\Form\Lists\YearList;
 
 /** @var Forms $forms */
@@ -53,11 +54,15 @@ $dates = $this->service('dates');
     <dt>Japanese GenGou</dt>
     <dd><?= $dates->selYear('year', YearList::forge(2015, 2017)->setFormat(YearList::formatJpnGenGou())); ?></dd>
 
-    <dt>Year-Month</dt>
-    <dd><?= $dates->dateYM('ym'); ?> </dd>
+    <dt>Year/Month</dt>
+    <dd><?= $dates->dateYM('ym'); ?></dd>
 
-    <dt></dt>
-    <dd></dd>
+    <dt>Month Day, Year</dt>
+    <dd><?= $dates
+            ->useYearList(YearList::forge(2012, 2010))
+            ->useMonthList(MonthList::forge()->setFormat(MonthList::formatFullText()))
+            ->dateYMD('mdY', '2012-03-04')
+            ->format('%2$s %3$s, %1$s'); ?></dd>
 
     <dt></dt>
     <dd></dd>
