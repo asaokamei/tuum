@@ -28,13 +28,13 @@ $dates = $this->service('dates');
     <li><?= $forms->radio('radio', 1)->checked()->label('a radio button'); ?></li>
     <li>
         <?= $forms->open()->method('post')->uploader(); ?>
-        <?= $forms->button()->value('a post form'); ?>
-        <?= $forms->button('reset')->value('a reset/cancel button'); ?>
+        <?= $forms->submit('a post form'); ?>
+        <?= $forms->reset('a reset/cancel button'); ?>
         <?= $forms->close(); ?>
     </li>
     <li>
         <?= $forms->open()->method('put')->uploader(); ?>
-        <?= $forms->button()->value('a put form has a hidden tag sending "put" method'); ?>
+        <?= $forms->submit('a put form has a hidden tag sending "put" method'); ?>
         <?= $forms->close(); ?>
     </li>
 </ul>
