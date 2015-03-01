@@ -16,7 +16,7 @@ $logger = $dic->get(Web::LOGGER);
 
 if($logger) {
     $logger->pushHandler(
-        new BrowserConsoleHandler()
+        new BrowserConsoleHandler(Logger::DEBUG)
     );
     $logger->info('debug mode.');
 }

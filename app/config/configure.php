@@ -1,6 +1,7 @@
 <?php
 
 use League\Container\Container;
+use Monolog\Handler\FingersCrossedHandler;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use Tuum\View\ErrorView;
@@ -20,7 +21,9 @@ $app->set(
     
         $var_dir = $dic->get(Web::VAR_DATA_DIR) . '/log/app.log';
         $logger  = new Logger('log');
-        $logger->pushHandler(new StreamHandler($var_dir, Logger::DEBUG));
+        $logger->pushHandler(
+            new FingersCrossedHandler(new StreamHandler($var_dir, Logger::DEBUG))
+        );
         return $logger;
 }, true);
 
