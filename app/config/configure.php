@@ -42,6 +42,10 @@ $app->set(Web::RENDER_ENGINE, function() use($dic) {
     $view = new Renderer(
         new Locator($dic->get(Web::TEMPLATE_DIR))
     );
+    if($doc_root = $dic->get(Web::DOCUMENT_DIR)) {
+        // also render php documents
+        $view->locator->addRoot($doc_root);
+    }
     $view->register('forms', new Forms());
     $view->register('dates', new Dates());
     $view->withView('layout/layout');
