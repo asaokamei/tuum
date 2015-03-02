@@ -1,7 +1,5 @@
-<?php
+<?= $this->block('sample/sub-menu'); ?>
 
-
-?>
 <h1>Let's Jump!</h1>
 
 <p>This is from SampleController::onJump().</p>

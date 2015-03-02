@@ -17,7 +17,7 @@
     <li><a href="closure/view">a view file from closure-view</a></li>
 </ul>
 
-<h3>Sample Controller</h3>
+<h3>Controller Sample</h3>
 <ul>
     <li><a href="sample/?name=TuumPHP" >sample welcome</a></li>
     <li><a href="sample/tuum" >sample hello world</a></li>

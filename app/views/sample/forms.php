@@ -1,3 +1,4 @@
+<?= $this->block('sample/sub-menu'); ?>
 <?php
 
 use Tuum\Form\Dates;

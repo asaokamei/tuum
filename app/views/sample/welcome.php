@@ -1,3 +1,5 @@
+<?= $this->block('sample/sub-menu'); ?>
+
 <?php
 
 $name = $view->data['name'];
