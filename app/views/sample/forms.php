@@ -23,7 +23,10 @@ $dates = $this->service('dates');
 
 <ul>
     <li><?= $forms->text('a-text', 'pre value')->width('20em')->label('a simple text box'); ?></li>
-    <li><?= $forms->textArea('b-text')->width('20em')->placeholder('a required text area')->required(); ?></li>
+    <li>
+        <?= $forms->label('label for text-area', 'b-text'); ?>
+        <?= $forms->textArea('b-text')->width('20em')->placeholder('a required text area')->required()->id(); ?>
+    </li>
     <li><?= $forms->checkbox('checks', 1)->checked()->label('a check box'); ?></li>
     <li><?= $forms->radio('radio', 1)->checked()->label('a radio button'); ?></li>
     <li>
