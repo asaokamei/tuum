@@ -1,6 +1,8 @@
 <?php
 use Tuum\View\Tuum\Renderer;
+use Tuum\Web\Viewer\View;
 
+/** @var View $view */
 /** @var Renderer $this */
 
 if (!isset($title)) {
@@ -45,6 +47,8 @@ if (!isset($title)) {
 </nav>
 
 <div class="container">
+
+    <?= $view->message; ?>
 
     <?= $this->getContent();?>
 

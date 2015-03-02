@@ -13,8 +13,6 @@ $tasks    = $data->withKey('tasks');
 
 <h1>Task Demo</h1>
 
-<?= $view->message; ?>
-
 <ul>
     <li><form name="init" action="/demoTasks/initialize" method="post" >
             <?= $data->hiddenTag('_token'); ?>
