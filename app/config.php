@@ -23,7 +23,7 @@ return [
     /*
      * document/resource directory.
      */
-    Web::DOCUMENT_DIR   => __DIR__.'/docs',
+    Web::DOCUMENT_DIR   => __DIR__.'/documents',
 
     /*
      * variables (cache, logs, etc.) directory.
