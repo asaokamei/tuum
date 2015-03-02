@@ -48,7 +48,7 @@ if (!isset($title)) {
 
 <div class="container">
 
-    <?= $view->message; ?>
+    <?= isset($view) ? $view->message : ''; ?>
 
     <?= $this->getContent();?>
 
