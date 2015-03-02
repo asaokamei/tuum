@@ -14,9 +14,6 @@ $dates = $this->service('dates');
 
 
 ?>
-<?= $this->render('layout/header', [
-    'title' => 'Form Samples!',
-]); ?>
 <h1>Form Samples</h1>
 
 <h2>Simple Forms</h2>

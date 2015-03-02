@@ -4,7 +4,11 @@ use League\Container\Container;
 use Monolog\Handler\FingersCrossedHandler;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
+use Tuum\Form\Dates;
+use Tuum\Form\Forms;
+use Tuum\Locator\Locator;
 use Tuum\View\ErrorView;
+use Tuum\View\Tuum\Renderer;
 use Tuum\Web\Web;
 use Tuum\Web\Psr7\Respond;
 
@@ -26,6 +30,24 @@ $app->set(
         );
         return $logger;
 }, true);
+
+/**
+ * Rendering Engine (Template)
+ *
+ * default is Tuum's view engine.
+ * use it as a singleton.
+ */
+$app->set(Web::RENDER_ENGINE, function() use($dic) {
+
+    $view = new Renderer(
+        new Locator($dic->get(Web::TEMPLATE_DIR))
+    );
+    $view->register('forms', new Forms());
+    $view->register('dates', new Dates());
+    $view->withView('layout/layout');
+    return $view;
+}, true);
+
 
 /**
  * rendering error page. should overwrite this service.

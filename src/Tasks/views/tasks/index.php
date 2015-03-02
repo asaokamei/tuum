@@ -10,9 +10,6 @@ $basePath = $data['basePath'];
 $tasks    = $data->withKey('tasks');
 
 ?>
-<?= $this->render('layout/header', [
-    'title' => 'Demo Task Application',
-]); ?>
 
 <h1>Task Demo</h1>
 
@@ -139,4 +136,3 @@ $tasks    = $data->withKey('tasks');
 
 <?php endif; ?>
 
-<?= $this->render('layout/footer'); ?>

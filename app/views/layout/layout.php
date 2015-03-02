@@ -1,4 +1,7 @@
 <?php
+use Tuum\View\Tuum\Renderer;
+
+/** @var Renderer $this */
 
 if (!isset($title)) {
     $title = 'TuumPHP Demo';
@@ -31,7 +34,20 @@ if (!isset($title)) {
             </button>
             <a class="navbar-brand" href="/">TuumPHP</a>
         </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a href="/sample/tuum">Hello Sample</a></li>
+                <li><a href="/demoTasks">Task Demo</a></li>
+            </ul>
+        </div>
     </div>
 </nav>
 
 <div class="container">
+
+    <?= $this->getContent();?>
+
+</div>
+</body>
+</html>
