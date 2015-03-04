@@ -15,7 +15,10 @@
     "tuum/web":"dev-master",
     "tuum/form":"dev-master",
     "tuum/byof": " dev-master",
-    "robmorgan/phinx": "0.4.*"
+    "robmorgan/phinx": "0.4.*",
+    "aura/auth": " 2.0.*"
+    "wscore/basic": "dev-master",
+    "wscore/auth": "dev-master"
   },
   "repositories": [
     {
@@ -25,6 +28,14 @@
     {
       "type": "vcs",
       "url": "https://github.com/TuumPHP/Form"
+    },
+    {
+      "type": "vcs",
+      "url": "https://github.com/asaokamei/WScore.Basic"
+    },
+    {
+      "type": "vcs",
+      "url": "https://github.com/asaokamei/WScore.Auth"
     }
   ],
   "autoload": {
