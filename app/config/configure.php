@@ -48,7 +48,7 @@ $app->set(Web::RENDER_ENGINE, function() use($dic) {
     }
     $view->register('forms', new Forms());
     $view->register('dates', new Dates());
-    $view->withView('layout/layout');
+    $view->setLayout('layout/layout');
     return $view;
 }, true);
 
