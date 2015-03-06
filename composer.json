@@ -18,7 +18,9 @@
     "robmorgan/phinx": "0.4.*",
     "aura/auth": " 2.0.*",
     "wscore/basic": "dev-master",
-    "wscore/auth": "dev-master"
+    "wscore/auth": "dev-master",
+    "wscore/validation": "dev-master",
+    "wscore/scoredb": "dev-master"
   },
   "repositories": [
     {
