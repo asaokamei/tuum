@@ -20,7 +20,8 @@
     "wscore/basic": "dev-master",
     "wscore/auth": "dev-master",
     "wscore/validation": "dev-master",
-    "wscore/scoredb": "dev-master"
+    "wscore/scoredb": "dev-master",
+    "swiftmailer/swiftmailer": "@stable"
   },
   "repositories": [
     {
