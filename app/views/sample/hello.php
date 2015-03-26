@@ -1,4 +1,4 @@
-<?= $this->block('sample/sub-menu'); ?>
+<?= $this->block('sample/sub-menu', ['current' => 'hello']); ?>
 
 <?php
 
