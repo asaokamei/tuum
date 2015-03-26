@@ -19,19 +19,19 @@ class TaskController extends AbstractController
     /**
      * @param TaskDao $dao
      */
-    public function __construct($dao)
+    public function __construct(TaskDao $dao)
     {
         $this->dao = $dao;
     }
 
     /**
-     * @param Application $app
+     * @param string $dir
      * @return TaskController
      */
-    public static function forge($app)
+    public static function forge($dir)
     {
         return new self(
-            new TaskDao($app->get(Web::VAR_DATA_DIR).'/data/tasks.csv')
+            new TaskDao($dir.'/tasks.csv')
         );
     }
     
