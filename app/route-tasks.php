@@ -1,15 +1,23 @@
 <?php
 
+use Tuum\View\Tuum\Renderer;
 use Tuum\Web\Application;
+use Tuum\Web\Stack\RouterStack;
 
 /** @var Application $app */
+/** @var RouterStack $routeStack */
+/** @var Renderer $views */
 
-$task_dir = dirname(__DIR__).'/src/Tasks';
+/**
+ * configure RouterStack for DemoTask.
+ *
+ * set root directory for the demo application using {*}
+ * (so that the app does not have to know the root directory).
+ */
+$task_dir   = dirname(__DIR__) . '/src/Tasks';
+$routeStack = $app->configure(
+    $task_dir . '/scripts/getRouterStack'
+);
+$routeStack->setRoot('/demoTasks{*}');
 
-return $app->configure(
-    $task_dir.'/scripts/tasks/setup', 
-    [
-        'root' => 'demoTasks{*}', // tasks url root name.
-        'views' => $task_dir.'/views',  // set view dir for task, or set to null to use current views.
-]);
-    
+return $routeStack;
