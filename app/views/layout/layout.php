@@ -48,6 +48,7 @@ if (!isset($title)) {
 
 <div class="container">
 
+    <?= $this->getSection('sub-menu'); ?>
     <?= isset($view) ? $view->message : ''; ?>
 
     <?= $this->getContent();?>

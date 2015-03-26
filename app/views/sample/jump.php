@@ -1,4 +1,4 @@
-<?= $this->block('sample/sub-menu', ['current' => 'message']); ?>
+<?= $this->blockAsSection('sample/sub-menu', 'sub-menu', ['current' => 'message']); ?>
 
 <h1>Let's Jump!</h1>
 

@@ -1,4 +1,4 @@
-<?= $this->block('sample/sub-menu', ['current' => 'forms']); ?>
+<?= $this->blockAsSection('sample/sub-menu', 'sub-menu', ['current' => 'forms']); ?>
 <?php
 
 use Tuum\Form\Dates;
