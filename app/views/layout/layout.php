@@ -20,6 +20,12 @@ if (!isset($title)) {
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <style type="text/css">
+        nav#footer {
+            background-color: #f0f0f0;
+            border-top: 1px solid #cccccc;
+        }
+    </style>
 </head>
 <body>
 
@@ -54,5 +60,11 @@ if (!isset($title)) {
     <?= $this->getContent();?>
 
 </div>
+<nav id="footer" class="nav navbar-fixed-bottom">
+    <div class="container">
+        <h4>TuumPHP framework.</h4>
+        <p><em>Tuum</em> means 'yours' in Latin; so it happens to the same pronunciation as 'stack' in Japanese. </p>
+    </div>
+</nav>
 </body>
 </html>

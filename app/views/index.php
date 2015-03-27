@@ -1,30 +1,38 @@
-<h1>TuumPHP Framework</h1>
-<p>TuumPHP is yet-another micro framework for PHP.</p>
+<div class="jumbotron">
+    <h1>TuumPHP framework</h1>
+    <p>TuumPHP is yet-another micro framework for PHP.</p>
+    <p><a href="https://github.com/TuumPHP/" target="_blank">source code≫</a></p>
+</div>
 
-<h3>URL Mappers</h3>
-<ul>
-    <li><a href="docs/index.php" >php file</a></li>
-    <li><a href="docs/tuum.html" >html file</a></li>
-    <li><a href="docs/tuum.txt" >text file</a></li>
-    <li><a href="docs/tuum.md" >markdown file (not found)</a></li>
-    <li><a href="docs/errors.php" >php exception thrown</a></li>
-</ul>
+<div class="col-md-4">
+    <h3>URL Mappers</h3>
+    <ul>
+        <li><a href="docs/index.php" >php file</a></li>
+        <li><a href="docs/tuum.html" >html file</a></li>
+        <li><a href="docs/tuum.txt" >text file</a></li>
+        <li><a href="docs/tuum.md" >markdown file (not found)</a></li>
+        <li><a href="docs/errors.php" >php exception thrown</a></li>
+    </ul>
+</div>
 
-<h3>Routes (closure style)</h3>
-<ul>
-    <li><a href="closure">from closure</a></li>
-    <li><a href="closure/text">raw text from a closure</a></li>
-    <li><a href="closure/array">array from a closure</a></li>
-    <li><a href="closure/view">a view file from closure-view</a></li>
-</ul>
+<div class="col-md-4">
+    <h3>Routes (closure style)</h3>
+    <ul>
+        <li><a href="closure">from closure</a></li>
+        <li><a href="closure/text">raw text from a closure</a></li>
+        <li><a href="closure/array">array from a closure</a></li>
+        <li><a href="closure/view">a view file from closure-view</a></li>
+    </ul>
+</div>
 
-<h3>Controller Sample</h3>
-<ul>
-    <li><a href="sample/?name=TuumPHP" >sample welcome</a></li>
-    <li><a href="sample/tuum" >sample hello world</a></li>
-    <li><a href="sample/jump" >redirect with message</a></li>
-    <li><a href="sample/forms" >html form samples</a></li>
-</ul>
+<div class="col-md-4">
+    <h3><a href="sample/?name=TuumPHP" >Controller Sample</a></h3>
+    <p>This samples use SampleController class to render various pages.</p>
+</div>
 
-<h3><a href="demoTasks" >Demo Task Application</a></h3>
+<div class="col-md-4">
+    <h3><a href="demoTasks" >Demo Task Application</a></h3>
+    <p>a demo task application defined as another stack. </p>
+</div>
+
 
