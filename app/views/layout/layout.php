@@ -5,6 +5,7 @@ use Tuum\Web\Viewer\View;
 /** @var View $view */
 /** @var Renderer $this */
 
+// main title in header. 
 if (!isset($title)) {
     $title = 'TuumPHP Demo';
 }
@@ -54,17 +55,36 @@ if (!isset($title)) {
 
 <div class="container">
 
-    <?= $this->getSection('sub-menu'); ?>
+    <?= $this->getSection('jumbotron'); ?>
+    
     <?= isset($view) ? $view->message : ''; ?>
+    
+    <?php if($this->sectionExists('sideBar', 'sub-menu')) : ?>
+        
+        <div class="col-md-3">
+            <?= $this->getSection('sub-menu'); ?>
+            <?= $this->getSection('sideBar'); ?>
+        </div>
+        <div class="col-md-9">
+            <?= $this->getContent();?>
+        </div>
 
-    <?= $this->getContent();?>
-
+    <?php else: ?>
+        
+        <div class="col-md-12">
+            <?= $this->getContent();?>
+        </div>
+        
+    <?php endif; ?>
+    
 </div>
+
 <nav id="footer" class="nav navbar-fixed-bottom">
     <div class="container">
         <h4>TuumPHP framework.</h4>
         <p><em>Tuum</em> means 'yours' in Latin; so it happens to the same pronunciation as 'stack' in Japanese. </p>
     </div>
 </nav>
+
 </body>
 </html>

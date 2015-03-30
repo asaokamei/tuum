@@ -1,8 +1,12 @@
+<?php /** @var \Tuum\View\Tuum\Renderer $this */ ?>
+
+<?php $this->startSection(); ?>
 <div class="jumbotron">
     <h1>TuumPHP framework</h1>
     <p>TuumPHP is yet-another micro framework for PHP.</p>
     <p><a href="https://github.com/TuumPHP/" target="_blank">source code≫</a></p>
 </div>
+<?php $this->endSectionAs('jumbotron'); ?>
 
 <div class="col-md-4">
     <h3>URL Mappers</h3>
