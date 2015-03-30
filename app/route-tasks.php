@@ -2,6 +2,7 @@
 
 use Tuum\View\Tuum\Renderer;
 use Tuum\Web\Application;
+use Tuum\Web\Psr7\Request;
 use Tuum\Web\Stack\RouterStack;
 
 /** @var Application $app */
@@ -19,5 +20,11 @@ $routeStack = $app->configure(
     $task_dir . '/scripts/getRouterStack'
 );
 $routeStack->setRoot('/demoTasks{*}');
+$routeStack->setBeforeFilter(
+    function($request, $next) {
+    /** @var Request $request */
+    /** @var callable $next */
+    return $next? $next($request->withAttribute('current', 'demoTasks')): null;
+});
 
 return $routeStack;

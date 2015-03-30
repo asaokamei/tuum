@@ -36,6 +36,11 @@ $routes->get( '/', function($request) {
 $routes->group(
     [
         'pattern' => '/closure',
+        'before' => function($request, $next) {
+            /** @var Request $request */
+            /** @var callable $next */
+            return $next? $next($request->withAttribute('current', 'controller')): null;
+        },
     ],
     function($routes) {
         /** @var RouteCollector $routes */
@@ -63,7 +68,12 @@ $routes->group(
 /*
  * add sample controller
  */
-$routes->any( '/sample{*}', SampleController::class);
+$routes->any( '/sample{*}', SampleController::class)->before(
+    function($request, $next) {
+        /** @var Request $request */
+        /** @var callable $next */
+        return $next? $next($request->withAttribute('current', 'controller')): null;
+    });
 
 /* -------------------
  * create router stack 
