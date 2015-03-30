@@ -68,6 +68,7 @@ $activate = function($case) use($view) {
     <?php if($this->sectionExists('sideBar', 'sub-menu')) : ?>
         
         <div class="col-md-3">
+            <br/>
             <?= $this->getSection('sub-menu'); ?>
             <?= $this->getSection('sideBar'); ?>
         </div>

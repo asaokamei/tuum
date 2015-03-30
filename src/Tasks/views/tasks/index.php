@@ -1,3 +1,4 @@
+<?php $this->blockAsSection('tasks/sub-menu', 'sub-menu', ['current' => 'list', 'base' => $view->data->basePath]); ?>
 <?php
 use Demo\Tasks\TaskDao;
 use Tuum\Web\Viewer\View;
