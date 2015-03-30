@@ -1,4 +1,3 @@
-<?php $this->blockAsSection('tasks/sub-menu', 'sub-menu', ['current' => 'list', 'base' => $view->data->basePath]); ?>
 <?php
 use Demo\Tasks\TaskDao;
 use Tuum\Web\Viewer\View;
@@ -12,14 +11,9 @@ $tasks    = $data->withKey('tasks');
 
 ?>
 
-<h1>Task Demo</h1>
+<?php $this->blockAsSection('tasks/sub-menu', 'sub-menu', ['current' => 'list', 'base' => $view->data->basePath]); ?>
 
-<ul>
-    <li><form name="init" action="/demoTasks/initialize" method="post" >
-            <?= $data->hiddenTag('_token'); ?>
-            <input type="submit" value="initialize"/>
-        </form></li>
-</ul>
+<h1>Task Demo</h1>
 
 <h2>task list</h2>
 
@@ -37,7 +31,14 @@ $tasks    = $data->withKey('tasks');
     }
 </style>
 
-<?php if(isset($tasks)) : ?>
+<?php if(!isset($tasks)) : ?>
+    
+    <form name="init" action="/demoTasks/initialize" method="post" >
+        <?= $data->hiddenTag('_token'); ?>
+        tasks are not defined. maybe 
+        <input type="submit" value="initialize" class="btn btn-info"/> ?
+    </form>
+<?php else: ?>
     
 <!--
   -- lists of tasks
@@ -87,51 +88,6 @@ $tasks    = $data->withKey('tasks');
     <?php endforeach; ?>
     </tbody>
 </table>
-
-    <!--
-      -- form for adding a new task
-      -->
-    
-    <h3>adding a new task</h3>
-
-    <form name="add" method="post" action="<?= $basePath; ?>">
-        <?= $data->hiddenTag('_token'); ?>
-        <table class="table">
-            <tbody>
-            <tr>
-                <td width="15%">add a new task:</td>
-                <td>
-                    <input type="text" name="task" value="<?= $inputs->get('task', $data['task']);?>" placeholder="add a new task..." style="width: 40em;"/>
-                    <?= $view->errors->text('task'); ?>
-                </td>
-                <td>
-                    <label><input type="date" name="done_by" value="<?= $inputs->get('done_by', $data['done_by']); ?>" /></label>
-                    <?= $view->errors->text('done_by'); ?>
-                </td>
-                <td>
-                    <input type="submit" value="add task"/>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </form>
-
-    <p>This form does not have CsRf token. should return forbidden error.</p>
-    <form name="add" method="post" action="<?= $basePath; ?>">
-        <table class="table">
-            <tbody>
-            <tr>
-                <td width="15%"> cannot add:</td>
-                <td>
-                    <input type="text" name="task" placeholder="add a new task..." style="width: 40em;"/>
-                </td>
-                <td>
-                    <input type="submit" value="add task"/>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </form>
 
 <?php endif; ?>
 

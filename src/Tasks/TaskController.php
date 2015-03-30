@@ -1,11 +1,9 @@
 <?php
 namespace Demo\Tasks;
 
-use Tuum\Web\Web;
 use Tuum\Web\Controller\AbstractController;
 use Tuum\Web\Controller\RouteDispatchTrait;
 use Tuum\Web\Psr7\Response;
-use Tuum\Web\Application;
 
 class TaskController extends AbstractController
 {
@@ -42,8 +40,10 @@ class TaskController extends AbstractController
     {
         return [
             'get:/'             => 'index',
-            'post:/'            => 'insert',
-            'post:/initialize'  => 'init',
+            'get:/create'       => 'create',
+            'post:/create'      => 'insert',
+            'get:/init'         => 'init',
+            'post:/init'        => 'initData',
             'post:/{id}'        => 'update',
             'post:/{id}/toggle' => 'toggle',
             'post:/{id}/delete' => 'delete',
@@ -68,6 +68,17 @@ class TaskController extends AbstractController
      * @return Response
      */
     public function onInit()
+    {
+        return $this->respond
+            ->asView('tasks/init');
+    }
+
+    /**
+     * create 5 initial tasks.
+     *
+     * @return Response
+     */
+    public function onInitData()
     {
         $this->dao->initialize();
         return $this->respond
@@ -108,6 +119,18 @@ class TaskController extends AbstractController
         return $this->respond
             ->withError('cannot find task #'.$id)
             ->asPath($this->basePath);
+    }
+
+    /**
+     * form for creating a new task
+     * 
+     * @return Response
+     */
+    public function onCreate()
+    {
+        return $this->respond
+            ->with('done_by', (new \DateTime('now'))->format('Y-m-d'))
+            ->asView('tasks/create');
     }
 
     /**
