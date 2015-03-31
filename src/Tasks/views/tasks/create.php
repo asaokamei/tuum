@@ -12,9 +12,7 @@ $tasks    = $data->extractKey('tasks');
 
 <?php $this->blockAsSection('tasks/sub-menu', 'sub-menu', ['current' => 'new', 'base' => $view->data->basePath]); ?>
 
-<h1>Task Demo</h1>
-
-<h2>create a new task</h2>
+<h1>Task Demo / new task</h1>
 
     <form name="add" method="post" action="">
         <?= $data->hiddenTag('_token'); ?>

@@ -20,9 +20,9 @@ $basePath = $data['basePath'];
         padding: 2em;
         margin: 1em;
     }
-</style><h1>Task Demo</h1>
+</style>
 
-<h2>initialize tasks</h2>
+<h1>Task Demo / initialize tasks</h1>
 
     <form name="add" method="post" action="">
         <?= $data->hiddenTag('_token'); ?>

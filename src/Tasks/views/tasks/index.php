@@ -15,8 +15,6 @@ $tasks    = $data->extractKey('tasks');
 
 <h1>Task Demo</h1>
 
-<h2>task list</h2>
-
 <style>
     span.done {
         color: gray;
