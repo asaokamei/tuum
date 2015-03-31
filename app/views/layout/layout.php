@@ -32,11 +32,18 @@ $activate = function($case) use($current) {
             background-color: #f0f0f0;
             border-top: 1px solid #cccccc;
         }
+        nav#header {
+            margin-bottom: 0;
+        }
+        ol.breadcrumb {
+            border-radius: 0;
+            background-color: #e7e7e7;
+        }
     </style>
 </head>
 <body>
 
-<nav class="navbar navbar-default">
+<nav id="header" class="navbar navbar-default">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -58,6 +65,15 @@ $activate = function($case) use($current) {
         </div>
     </div>
 </nav>
+
+<?php $this->startSection(); ?>
+
+<ol class="breadcrumb">
+    <li><a href="/" >Main Page</a></li>
+    <?= $this->getSection('breadcrumb'); ?>
+</ol>
+
+<?php $this->renderAsSection('breadcrumb'); ?>
 
 <div class="container">
 

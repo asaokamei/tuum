@@ -1,4 +1,11 @@
-<?= $this->blockAsSection('sample/sub-menu', 'sub-menu', ['current' => 'welcome']); ?>
+<?php /** @var \Tuum\View\Renderer $this */ ?>
+
+<?php $this->blockAsSection('sample/sub-menu', 'sub-menu', ['current' => 'welcome']); ?>
+
+<?php $this->startSection() ?>
+<li><a href="<?= $view->data->basePath; ?>?name=Controller Sample" >Controller Sample</a></li>
+<li class="active">Welcome</li>
+<?php $this->endSectionAs('breadcrumb'); ?>
 
 <?php
 

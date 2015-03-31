@@ -1,11 +1,15 @@
-<?php /** @var \Tuum\View\Tuum\Renderer $this */ ?>
+<?php /** @var \Tuum\View\Renderer $this */ ?>
+
+<?php $this->markSectionNoRender('breadcrumb'); ?>
 
 <?php $this->startSection(); ?>
-<div class="jumbotron">
+
+<div class="jumbotron" style="margin-top:20px;">
     <h1>TuumPHP framework</h1>
     <p>TuumPHP is yet-another micro framework for PHP.</p>
     <p><a href="https://github.com/TuumPHP/" target="_blank">source code≫</a></p>
 </div>
+
 <?php $this->endSectionAs('jumbotron'); ?>
 
 <div class="col-md-4">

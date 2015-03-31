@@ -12,6 +12,11 @@ $tasks    = $data->extractKey('tasks');
 
 <?php $this->blockAsSection('tasks/sub-menu', 'sub-menu', ['current' => 'new', 'base' => $view->data->basePath]); ?>
 
+<?php $this->startSection() ?>
+<li><a href="<?= $view->data->basePath; ?>" >Task Demo</a></li>
+<li class="active">New Task</li>
+<?php $this->endSectionAs('breadcrumb'); ?>
+
 <h1>Task Demo / new task</h1>
 
     <form name="add" method="post" action="">

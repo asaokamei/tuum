@@ -1,4 +1,12 @@
-<?= $this->blockAsSection('sample/sub-menu', 'sub-menu', ['current' => 'forms']); ?>
+<?php /** @var \Tuum\View\Renderer $this */ ?>
+
+<?php $this->blockAsSection('sample/sub-menu', 'sub-menu', ['current' => 'forms']); ?>
+
+<?php $this->startSection() ?>
+<li><a href="<?= $view->data->basePath; ?>?name=Controller Sample" >Controller Sample</a></li>
+<li class="active">Forms Sample</li>
+<?php $this->endSectionAs('breadcrumb'); ?>
+
 <?php
 
 use Tuum\Form\Dates;
