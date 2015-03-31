@@ -1,4 +1,7 @@
 <?php /** @var \Tuum\View\Renderer $this */ ?>
+<?php /** @var \Tuum\View\Values\Value $view */ ?>
+
+<?php $view->data['current'] = 'closure'; ?>
 
 <?php $this->startSection() ?>
 <li><a href="/closure/view" >Closure Sample</a></li>
@@ -15,7 +18,6 @@
     <li><a href="/closure">from closure</a></li>
     <li><a href="/closure/text">raw text from a closure</a></li>
     <li><a href="/closure/array">array from a closure</a></li>
-    <li><a href="/closure/view">a view file from closure-view</a></li>
 </ul>
 
 </body>

@@ -59,6 +59,8 @@ $activate = function($case) use($current) {
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
+                <li<?= $activate('maps');?>><a href="/docs/index.php">URL Maps</a></li>
+                <li<?= $activate('closure');?>><a href="/closure/view">Closure Routes</a></li>
                 <li<?= $activate('controller');?>><a href="/sample?name=TuumPHP">Controller Sample</a></li>
                 <li<?= $activate('demoTasks' );?>><a href="/demoTasks">Task Demo</a></li>
             </ul>
