@@ -11,14 +11,10 @@ if (!isset($title)) {
 }
 
 // set menu highlight
-if (isset($view)) {
-    $current = $view->data->current ?: 'none'; 
-    $activate = function($case) use($current) {
-        return $case === $current ? ' class="active"': '';
-    };
-} else {
-    $activate = function() {return '';};
-}
+$current = $view->data->current ?: 'none';
+$activate = function($case) use($current) {
+    return $case === $current ? ' class="active"': '';
+};
 
 ?>
 <!DOCTYPE html>

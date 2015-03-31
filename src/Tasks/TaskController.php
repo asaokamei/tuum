@@ -147,12 +147,12 @@ class TaskController extends AbstractController
                 ->withError('please check the new task to enter!')
                 ->withInput($input)
                 ->withInputErrors($errors)
-                ->asPath($this->basePath);
+                ->asPath($this->basePath.'/create');
         }
         if(!$id = $this->dao->insert($input['task'], $input['done_by'])) {
             return $this->respond
                 ->withError('cannot add a new task, yet!')
-                ->asPath($this->basePath);
+                ->asPath($this->basePath.'/create');
         }
         return $this->respond
             ->withMessage('added a new task #'.$id)

@@ -1,12 +1,12 @@
 <?php
-use Tuum\Web\Viewer\View;
+use Tuum\View\Values\Value;
 
-/** @var View $view */
+/** @var Value $view */
 
 $inputs   = $view->inputs;
 $data     = $view->data;
 $basePath = $data['basePath'];
-$tasks    = $data->withKey('tasks');
+$tasks    = $data->extractKey('tasks');
 
 ?>
 
@@ -23,13 +23,13 @@ $tasks    = $data->withKey('tasks');
             <dt>task</dt>
             <dd>
                 <input type="text" name="task" value="<?= $inputs->get('task', $data['task']);?>" placeholder="add a new task..." style="width: 40em;"/>
-                <?= $view->errors->text('task'); ?>
+                <?= $view->errors->get('task'); ?>
             </dd>
             
             <dt>done by</dt>
             <dd>
                 <label><input type="date" name="done_by" value="<?= $inputs->get('done_by', $data['done_by']); ?>" /></label>
-                <?= $view->errors->text('done_by'); ?>
+                <?= $view->errors->get('done_by'); ?>
             </dd>
             
             <dt></dt>
@@ -47,13 +47,13 @@ $tasks    = $data->withKey('tasks');
             <dt>task</dt>
             <dd>
                 <input type="text" name="task" value="<?= $inputs->get('task', $data['task']);?>" placeholder="add a new task..." style="width: 40em;"/>
-                <?= $view->errors->text('task'); ?>
+                <?= $view->errors->get('task'); ?>
             </dd>
 
             <dt>done by</dt>
             <dd>
                 <label><input type="date" name="done_by" value="<?= $inputs->get('done_by', $data['done_by']); ?>" /></label>
-                <?= $view->errors->text('done_by'); ?>
+                <?= $view->errors->get('done_by'); ?>
             </dd>
 
             <dt></dt>

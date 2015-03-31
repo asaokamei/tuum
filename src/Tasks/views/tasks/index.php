@@ -1,13 +1,13 @@
 <?php
 use Demo\Tasks\TaskDao;
-use Tuum\Web\Viewer\View;
+use Tuum\View\Values\Value;
 
-/** @var View $view */
+/** @var Value $view */
 
 $inputs   = $view->inputs;
 $data     = $view->data;
 $basePath = $data['basePath'];
-$tasks    = $data->withKey('tasks');
+$tasks    = $data->extractKey('tasks');
 
 ?>
 
@@ -57,13 +57,13 @@ $tasks    = $data->withKey('tasks');
     <?php
     foreach($tasks->getKeys() as $key) :
 
-        $task = $tasks->withKey($key);
+        $task = $tasks->extractKey($key);
         $class = ($task[1] === TaskDao::ACTIVE) ? 'active' : 'done';
     ?>
     <tr>
         <td><?= $task[0] ?></td>
         <td>
-            <span class="<?= $class; ?>" ><?= $task->safe(2) ?></span>
+            <span class="<?= $class; ?>" ><?= $task->get(2) ?></span>
             <?php
             if($task[1]===TaskDao::DONE) {
                 ?>
