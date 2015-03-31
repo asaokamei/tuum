@@ -1,5 +1,5 @@
 <?php
-use Tuum\View\Tuum\Renderer;
+use Tuum\View\Renderer;
 use Tuum\Web\Viewer\View;
 
 /** @var View $view */

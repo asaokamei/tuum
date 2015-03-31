@@ -8,7 +8,7 @@ use Tuum\Form\Dates;
 use Tuum\Form\Forms;
 use Tuum\Locator\Locator;
 use Tuum\View\ErrorView;
-use Tuum\View\Tuum\Renderer;
+use Tuum\View\Renderer;
 use Tuum\Web\Web;
 use Tuum\Web\Psr7\Respond;
 
