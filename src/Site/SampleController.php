@@ -70,10 +70,9 @@ class SampleController extends AbstractController
      */
     protected function onJumper($message='jumped')
     {
-        $basePath = $this->request->getBasePath();
         return $this->respond
             ->withMessage($message)
-            ->asRedirectUri($basePath.'/jump')
+            ->toBasePath('jump')
             ;
     }
 

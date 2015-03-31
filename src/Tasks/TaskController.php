@@ -83,7 +83,7 @@ class TaskController extends AbstractController
         $this->dao->initialize();
         return $this->respond
             ->withMessage('initialized tasks.')
-            ->asPath($this->basePath);
+            ->toBasePath();
     }
 
     /**
@@ -96,11 +96,11 @@ class TaskController extends AbstractController
     {
         if($this->dao->toggle($id)) {
             return $this->respond
-                ->asPath($this->basePath);
+                ->toBasePath();
         }
         return $this->respond
             ->withError('cannot find task #'.$id)
-            ->asPath($this->basePath);
+            ->toBasePath();
     }
 
     /**
@@ -114,11 +114,11 @@ class TaskController extends AbstractController
         if($this->dao->delete($id)) {
             return $this->respond
             ->withMessage('deleted task #'.$id)
-                ->asPath($this->basePath);
+                ->toBasePath();
         }
         return $this->respond
             ->withError('cannot find task #'.$id)
-            ->asPath($this->basePath);
+            ->toBasePath();
     }
 
     /**
@@ -147,16 +147,16 @@ class TaskController extends AbstractController
                 ->withError('please check the new task to enter!')
                 ->withInput($input)
                 ->withInputErrors($errors)
-                ->asPath($this->basePath.'/create');
+                ->toBasePath('create');
         }
         if(!$id = $this->dao->insert($input['task'], $input['done_by'])) {
             return $this->respond
                 ->withError('cannot add a new task, yet!')
-                ->asPath($this->basePath.'/create');
+                ->toBasePath('create');
         }
         return $this->respond
             ->withMessage('added a new task #'.$id)
-            ->asPath($this->basePath);
+            ->toBasePath();
     }
 
     /**
