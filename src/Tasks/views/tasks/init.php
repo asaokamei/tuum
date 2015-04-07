@@ -1,7 +1,7 @@
 <?php
-use Tuum\Web\Viewer\View;
+use Tuum\Web\View\Value;
 
-/** @var View $view */
+/** @var Value $view */
 
 $inputs   = $view->inputs;
 $data     = $view->data;

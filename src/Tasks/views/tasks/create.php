@@ -1,5 +1,5 @@
 <?php
-use Tuum\View\Values\Value;
+use Tuum\Web\View\Value;
 
 /** @var Value $view */
 

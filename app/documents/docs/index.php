@@ -1,5 +1,5 @@
 <?php /** @var \Tuum\View\Renderer $this */ ?>
-<?php /** @var \Tuum\View\Values\Value $view */ ?>
+<?php /** @var \Tuum\Web\View\Value $view */ ?>
 
 <?php $view->data['current'] = 'maps'; ?>
 

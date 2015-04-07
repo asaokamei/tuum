@@ -1,8 +1,8 @@
 <?php
 use Tuum\View\Renderer;
-use Tuum\Web\Viewer\View;
+use Tuum\Web\View\Value;
 
-/** @var View $view */
+/** @var Value $view */
 /** @var Renderer $this */
 
 // main title in header. 

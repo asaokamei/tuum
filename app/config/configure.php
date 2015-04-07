@@ -48,7 +48,7 @@ $app->set(Web::RENDER_ENGINE, function() use($dic) {
     $renderer->register('forms', new Forms());
     $renderer->register('dates', new Dates());
     $renderer->setLayout('layout/layout');
-    $view = new \Tuum\View\View($renderer, new Tuum\View\Values\Value());
+    $view = new \Tuum\Web\View\View($renderer, new \Tuum\Web\View\Value());
     return $view;
 }, true);
 
