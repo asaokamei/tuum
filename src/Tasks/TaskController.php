@@ -56,7 +56,7 @@ class TaskController extends AbstractController
     public function onIndex()
     {
         $tasks = $this->dao->getTasks();
-        return $this->respond
+        return $this->respond()
             ->with('tasks', $tasks)
             ->with('done_by', (new \DateTime('now'))->format('Y-m-d'))
             ->asView('tasks/index');
@@ -69,7 +69,7 @@ class TaskController extends AbstractController
      */
     public function onInit()
     {
-        return $this->respond
+        return $this->respond()
             ->asView('tasks/init');
     }
 
@@ -81,7 +81,7 @@ class TaskController extends AbstractController
     public function onInitData()
     {
         $this->dao->initialize();
-        return $this->respond
+        return $this->redirect()
             ->withMessage('initialized tasks.')
             ->toBasePath();
     }
@@ -95,10 +95,10 @@ class TaskController extends AbstractController
     public function onToggle($id)
     {
         if($this->dao->toggle($id)) {
-            return $this->respond
+            return $this->redirect()
                 ->toBasePath();
         }
-        return $this->respond
+        return $this->redirect()
             ->withError('cannot find task #'.$id)
             ->toBasePath();
     }
@@ -112,11 +112,11 @@ class TaskController extends AbstractController
     public function onDelete($id)
     {
         if($this->dao->delete($id)) {
-            return $this->respond
+            return $this->redirect()
             ->withMessage('deleted task #'.$id)
                 ->toBasePath();
         }
-        return $this->respond
+        return $this->redirect()
             ->withError('cannot find task #'.$id)
             ->toBasePath();
     }
@@ -128,7 +128,7 @@ class TaskController extends AbstractController
      */
     public function onCreate()
     {
-        return $this->respond
+        return $this->respond()
             ->with('done_by', (new \DateTime('now'))->format('Y-m-d'))
             ->asView('tasks/create');
     }
@@ -143,18 +143,18 @@ class TaskController extends AbstractController
         $input = $this->request->getBodyParams();
         $errors = $this->validate($input);
         if(!empty($errors)) {
-            return $this->respond
+            return $this->redirect()
                 ->withError('please check the new task to enter!')
                 ->withInput($input)
                 ->withInputErrors($errors)
                 ->toBasePath('create');
         }
         if(!$id = $this->dao->insert($input['task'], $input['done_by'])) {
-            return $this->respond
+            return $this->redirect()
                 ->withError('cannot add a new task, yet!')
                 ->toBasePath('create');
         }
-        return $this->respond
+        return $this->redirect()
             ->withMessage('added a new task #'.$id)
             ->toBasePath();
     }

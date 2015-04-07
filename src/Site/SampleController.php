@@ -37,7 +37,7 @@ class SampleController extends AbstractController
      */
     protected function onHello($name)
     {
-        return $this->respond
+        return $this->respond()
             ->with('name', $name )
             ->asView('sample/hello')
             ;
@@ -48,7 +48,7 @@ class SampleController extends AbstractController
      */
     protected function onWelcome($name='Tuum')
     {
-        return $this->respond
+        return $this->respond()
             ->with( 'name', $name )
             ->asView('sample/welcome')
             ;
@@ -59,7 +59,7 @@ class SampleController extends AbstractController
      */
     protected function onJump()
     {
-        return $this->respond
+        return $this->respond()
             ->asView('sample/jump')
             ;
     }
@@ -70,7 +70,7 @@ class SampleController extends AbstractController
      */
     protected function onJumper($message='jumped')
     {
-        return $this->respond
+        return $this->redirect()
             ->withMessage($message)
             ->toBasePath('jump')
             ;
@@ -81,7 +81,7 @@ class SampleController extends AbstractController
      */
     protected function onForms()
     {
-        return $this->respond
+        return $this->respond()
             ->asView('sample/forms');
     }
 }
