@@ -1,7 +1,7 @@
 <?php
 
 use Demo\Site\SampleController;
-use Tuum\Routing\RouteCollector;
+use Tuum\Router\RouteCollector;
 use Tuum\Web\Psr7\Request;
 use Tuum\Web\Stack\RouterStack;
 use Tuum\Web\Application;

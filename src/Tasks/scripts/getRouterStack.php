@@ -3,7 +3,7 @@
 use Demo\Tasks\TaskController;
 use Demo\Tasks\TaskDao;
 use League\Container\Container;
-use Tuum\Routing\RouteCollector;
+use Tuum\Router\RouteCollector;
 use Tuum\View\Tuum\Renderer;
 use Tuum\Web\Application;
 use Tuum\Web\Stack\RouterStack;
