@@ -98,6 +98,7 @@ class SampleController extends AbstractController
     protected function onCreate()
     {
         return $this->respond()
+            ->with('name', 'anonymous')
             ->asView('sample/create');
     }
 
@@ -111,11 +112,11 @@ class SampleController extends AbstractController
                 ->withInput($this->validator->getData())
                 ->withInputErrors($this->validator->getErrors())
                 ->withError('bad input.')
-                ->toPath('sample/create');
+                ->toBasePath('/create');
         }
         return $this->redirect()
             ->withInput($this->validator->getData())
             ->withMessage('good input.')
-            ->toPath('sample/create');
+            ->toBasePath('/create');
     }
 }

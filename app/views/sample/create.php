@@ -12,6 +12,7 @@
 <?php
 /** @var Tuum\Form\Forms $forms */
 $forms = $this->service('forms');
+$data  = $view->data;
 $input = $view->inputs;
 $errors= $view->errors;
 
@@ -24,7 +25,7 @@ $errors= $view->errors;
     <?=
     $forms->formGroup(
         $forms->label('you name', 'name'),
-        '<input type="text" name="name" id="name" value="'.$input->get('name'). '" placeholder="maybe your name" class="form-control"/>'
+        '<input type="text" name="name" id="name" value="'.$input->get('name', $data->raw('name')). '" placeholder="maybe your name" class="form-control"/>'
     );?>
     <?= $errors->get('name'); ?>
 
