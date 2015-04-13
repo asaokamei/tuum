@@ -1,4 +1,16 @@
-<?php /** @var \Tuum\View\Renderer $this */ ?>
+<?php
+use Tuum\Form\Lists\Lists;
+use Tuum\Form\Lists\MonthList;
+use Tuum\Form\Lists\YearList;
+use Tuum\Web\View\Value;
+
+/** @var \Tuum\View\Renderer $this */
+/** @var Value $view */
+
+$forms = $view->forms;
+$dates = $view->dates;
+
+?>
 
 <?php $this->blockAsSection('sample/sub-menu', 'sub-menu', ['current' => 'forms']); ?>
 
@@ -7,22 +19,6 @@
 <li class="active">Forms Sample</li>
 <?php $this->endSectionAs('breadcrumb'); ?>
 
-<?php
-
-use Tuum\Form\Dates;
-use Tuum\Form\Forms;
-use Tuum\Form\Lists\Lists;
-use Tuum\Form\Lists\MonthList;
-use Tuum\Form\Lists\YearList;
-
-/** @var Forms $forms */
-/** @var Dates $dates */
-
-$forms = $this->service('forms');
-$dates = $this->service('dates');
-
-
-?>
 <h1>Form Samples</h1>
 
 <h2>Simple Forms</h2>
