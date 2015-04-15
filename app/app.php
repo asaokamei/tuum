@@ -4,7 +4,7 @@ use Tuum\Web\Psr7\RequestFactory;
 use Tuum\Web\Psr7\Respond;
 use Tuum\Web\Web;
 
-require_once( dirname( __DIR__ ) . '/vendor/autoload.php' );
+require_once(dirname(__DIR__) . '/vendor/autoload.php');
 
 /**
  * pre-configuration of building $app.
@@ -35,25 +35,26 @@ $app
     ->pushCsRfStack()
     ->pushViewStack()
     ->pushUrlMapper(
-        __DIR__.'/documents'
+        __DIR__ . '/documents'
     )
     ->pushRoutes([
-        __DIR__.'/routes',
-        __DIR__.'/route-tasks'
-    ])
-;
+        __DIR__ . '/routes',
+        __DIR__ . '/route-tasks'
+    ]);
 
 // add a closure for testing purpose only. 
 $app->prepend(
-    function($request, $next) {
-    /** @var Request $request */
-    return $next?$next($request->withAttribute('closure', function(){;})) : null;
-});
+    function ($request, $next) {
+        /** @var Request $request */
+        return $next ? $next($request->withAttribute('closure', function () {
+            ;
+        })) : null;
+    });
 
 /**
  * run $app
  */
 
 $request  = RequestFactory::fromGlobals();
-$response = $app->__invoke( $request );
+$response = $app->__invoke($request);
 $response->send();
