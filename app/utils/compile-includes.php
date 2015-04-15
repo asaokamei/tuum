@@ -22,12 +22,24 @@ $config = ClassLoader::getIncludes(function( ClassLoader $loader) {
     $loader->register();
 
     /**
+     * monolog
+     */
+    $logger  = new Logger('compiled-includes');
+    $logger->pushHandler(
+        new FingersCrossedHandler(new StreamHandler(dirname(dirname(__DIR__)).'/log', Logger::DEBUG))
+    );
+    $logger->pushHandler(
+        new BrowserConsoleHandler(Logger::DEBUG)
+    );
+
+    /**
      * load $app, request, and response. 
      */
     /** @var Closure $boot */
     /** @var Web $app */
     $app = Web::forge(dirname(__DIR__), true);
-    $app->pushErrorStack([])
+    $app->setup()
+        ->pushErrorStack([])
         ->pushSessionStack()
         ->pushCsRfStack()
         ->pushViewStack()
@@ -39,7 +51,7 @@ $config = ClassLoader::getIncludes(function( ClassLoader $loader) {
         ])
     ;
     $request  = RequestFactory::fromPath('no-such');
-    $response = $request->respond()->asForbidden();
+    $request->respond()->asForbidden();
     
     /**
      * try session stuff.
@@ -47,25 +59,14 @@ $config = ClassLoader::getIncludes(function( ClassLoader $loader) {
     $session_factory = new SessionFactory;
     $session         = $session_factory->newInstance($_COOKIE);
     $segment = $session->getSegment('TuumPHP/WebApplication');
-    $token = $session->getCsrfToken('sample-token');
-    $flash   = $segment->getFlash('flashed');
+    $session->getCsrfToken('sample-token');
+    $segment->getFlash('flashed');
     /**
      * view
      */
-    $view     = include_once(dirname(dirname(__DIR__)).'/vendor/tuum/web/scripts/compiled/view.php');
+    include_once(dirname(dirname(__DIR__)).'/vendor/tuum/web/scripts/compiled/view.php');
     $control  = include_once(dirname(dirname(__DIR__)).'/vendor/tuum/web/scripts/compiled/controller.php');
     $control->__invoke($request);
-
-    /**
-     * monolog
-     */
-    $logger  = new Logger('compiled-includes');
-    $logger->pushHandler(
-        new FingersCrossedHandler(new StreamHandler(dirname(dirname(__DIR__)).'/log', Logger::DEBUG))
-    );
-    $logger->pushHandler(
-        new BrowserConsoleHandler(Logger::DEBUG)
-    );
 
 });
 
