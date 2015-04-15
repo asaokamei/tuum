@@ -7,7 +7,6 @@
 use ClassPreloader\Command\PreCompileCommand;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\NullOutput;
-use Tuum\Web\Web;
 
 $vendor_dir = dirname(dirname(__DIR__)).'/vendor';
 require_once( $vendor_dir.'/autoload.php');

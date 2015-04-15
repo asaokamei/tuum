@@ -10,7 +10,6 @@ use Monolog\Handler\BrowserConsoleHandler;
 use Monolog\Handler\FingersCrossedHandler;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
-use Tuum\Web\Application;
 use Tuum\Web\Psr7\RequestFactory;
 use Tuum\Web\Web;
 
@@ -34,12 +33,14 @@ $config = ClassLoader::getIncludes(function( ClassLoader $loader) {
      */
     /** @var Closure $boot */
     /** @var Web $app */
+    /** @noinspection PhpUnusedLocalVariableInspection */
     $xhProf_limit = false;
+    /** @noinspection PhpUnusedLocalVariableInspection */
     $debug        = false;
     $app = include dirname(__DIR__).'/app.php';
 
     $request  = RequestFactory::fromPath('no-such');
-    $respond  = $app->__invoke($request);
+    $app->__invoke($request);
     $request->respond()->asForbidden();
     
     /**
