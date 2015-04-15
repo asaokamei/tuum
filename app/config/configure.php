@@ -21,9 +21,9 @@ use Tuum\Web\Psr7\Respond;
  */
 $app->set(
     Web::LOGGER, 
-    function () use ($dic) {
+    function () use ($app) {
     
-        $var_dir = $dic->get(Web::VAR_DATA_DIR) . '/log/app.log';
+        $var_dir = $app->vars_dir . '/log/app.log';
         $logger  = new Logger('log');
         $logger->pushHandler(
             new FingersCrossedHandler(new StreamHandler($var_dir, Logger::DEBUG))
@@ -31,38 +31,4 @@ $app->set(
         return $logger;
 }, true);
 
-/**
- * Rendering Engine (Template)
- *
- * default is Tuum's view engine.
- * use it as a singleton.
- */
-$app->set(Web::RENDER_ENGINE, function() use($dic) {
-
-    $locator = new Locator($dic->get(Web::TEMPLATE_DIR));
-    if($doc_root = $dic->get(Web::DOCUMENT_DIR)) {
-        // also render php documents
-        $locator->addRoot($doc_root);
-    }
-    $renderer = new Renderer($locator);
-    $renderer->setLayout('layout/layout');
-    $view = new \Tuum\Web\View\View($renderer, new \Tuum\Web\View\Value());
-    return $view;
-}, true);
-
-
-/**
- * rendering error page. should overwrite this service.
- */
-$app->set('service/error-renderer', function () use ($dic) {
-
-    $view = new ErrorView($dic->get(Web::RENDER_ENGINE), $dic->get(Web::DEBUG));
-    $view->setLogger($dic->get(Web::LOGGER));
-
-    // error template files for each error status code.
-    $view->error_files[Respond::ACCESS_DENIED] = 'errors/forbidden';
-    $view->error_files[Respond::FILE_NOT_FOUND] = 'errors/not-found';
-
-    return $view;
-});
-
+$app->getViewEngine()->setLayout('/layout/layout');

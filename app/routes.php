@@ -13,11 +13,10 @@ use Tuum\Web\Web;
 // create basic routers
 // --------------------
 
-/** @var RouterStack $routeStack */
+/** @var RouterStack $stack */
 /** @var RouteCollector $routes */
 
-$routeStack = $app->get(Web::ROUTER_STACK);
-$routes     = $routeStack->getRouting();
+$routes = $stack->getRouting();
 
 // ----------
 // add routes
@@ -79,8 +78,4 @@ $routes->any( '/sample{*}', SampleController::class)->before(
  * create router stack 
  */
 
-$routeStack->setRoot('/');
-$routeStack->setRoot('/closure*');
-$routeStack->setRoot('/sample*');
-
-return $routeStack;
+return $stack;

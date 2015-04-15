@@ -20,18 +20,24 @@ require_once( $vendor_dir.'/autoload.php');
 $config = ClassLoader::getIncludes(function( ClassLoader $loader) {
 
     $loader->register();
-    $config = include(dirname(__DIR__).'/config.php');
-    $config['environment'] = ['compiled'];
-
-    $boot = include(__DIR__ . '/boot.php');
 
     /**
      * load $app, request, and response. 
      */
     /** @var Closure $boot */
-    /** @var Application $app */
-    $app  = $boot($config);
-    $app->set(Web::LOGGER, null);
+    /** @var Web $app */
+    $app = Web::forge(dirname(__DIR__), true);
+    $app->pushErrorStack([])
+        ->pushSessionStack()
+        ->pushCsRfStack()
+        ->pushViewStack()
+        ->pushUrlMapper(
+            dirname(__DIR__).'/documents'
+        )
+        ->pushRoutes([
+            dirname(__DIR__).'/routes.php'
+        ])
+    ;
     $request  = RequestFactory::fromPath('no-such');
     $response = $request->respond()->asForbidden();
     
@@ -55,13 +61,11 @@ $config = ClassLoader::getIncludes(function( ClassLoader $loader) {
      */
     $logger  = new Logger('compiled-includes');
     $logger->pushHandler(
-        new FingersCrossedHandler(new StreamHandler($config[Web::VAR_DATA_DIR].'/log', Logger::DEBUG))
+        new FingersCrossedHandler(new StreamHandler(dirname(dirname(__DIR__)).'/log', Logger::DEBUG))
     );
     $logger->pushHandler(
         new BrowserConsoleHandler(Logger::DEBUG)
     );
-
-    return $config;
 
 });
 

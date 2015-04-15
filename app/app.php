@@ -2,30 +2,48 @@
 use Tuum\Web\Psr7\Request;
 use Tuum\Web\Psr7\RequestFactory;
 use Tuum\Web\Application;
+use Tuum\Web\Psr7\Respond;
+use Tuum\Web\Web;
 
 require_once( dirname( __DIR__ ) . '/vendor/autoload.php' );
 
-/** @var \Closure $boot */
-/** @var Application $app */
+/** @var Web $app */
+
+$debug = false;
 
 date_default_timezone_set('Asia/Tokyo');
 
 /*
- * get configuration
+ * pre-configuration of building $app.
  */
-$config = include __DIR__.'/config.php';
 
 // xhprof profiling
 include __DIR__.'/utils/xhprof.php';
 
-/*
- * boot $app
+// read compiled class files.
+include __DIR__ . '/utils/boot-compiled.php';
+
+/**
+ * build and configure $app.
  */
-$boot = include __DIR__ . '/utils/boot.php';
-$boot = include __DIR__ . '/utils/boot-compiled.php';
-$boot = include __DIR__ . '/utils/boot-config.php';
-/** @var Application $app */
-$app  = $boot($config);
+$app = Web::forge(__DIR__, $debug);
+$app
+    ->pushErrorStack([
+        Respond::ACCESS_DENIED  => 'errors/forbidden',
+        Respond::FILE_NOT_FOUND => 'errors/not-found',
+    ])
+    ->pushSessionStack()
+    ->pushCsRfStack()
+    ->pushViewStack()
+    ->pushUrlMapper(
+        __DIR__.'/documents'
+    )
+    ->pushRoutes([
+        __DIR__.'/routes.php',
+        __DIR__.'/route-tasks.php'
+    ])
+;
+
 $app->prepend(
     function($request, $next) {
     /** @var Request $request */

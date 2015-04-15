@@ -6,21 +6,17 @@
 if (!function_exists('xhprof_enable')) {
     return;
 }
-if (!isset($config['xhprof-limit'])) {
-    return;
-}
-if ($config['xhprof-limit']===false) {
-    return;
+if (!isset($slow_limit)) {
+    $slow_limit = '1.0'; // default threshold in second.
 }
 
 /*
  * starting xh-profiler
  */
-call_user_func(function () use($config) {
+call_user_func(function () use($slow_limit) {
 
     xhprof_enable();
     $start_time = microtime(true);
-    $slow_limit = $config['xhprof-limit']; // in seconds
     $app_name   = 'TuumPHP';
     $prof_root  = '/usr/local/Cellar/php56-xhprof/254eb24';
 

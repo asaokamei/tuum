@@ -17,8 +17,7 @@ require_once( $vendor_dir.'/autoload.php');
  * set up class preLoader script.
  */
 $getIncludes = __DIR__.'/compile-includes.php';
-$config      = include dirname(__DIR__).'/config.php';
-$outputPath  = $config[Web::VAR_DATA_DIR].'/compiled.php';
+$outputPath  = dirname(dirname(__DIR__)).'/var/compiled.php';
 
 /*
  * run compilation

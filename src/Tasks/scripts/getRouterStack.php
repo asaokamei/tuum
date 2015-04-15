@@ -4,21 +4,21 @@ use Demo\Tasks\TaskController;
 use Demo\Tasks\TaskDao;
 use League\Container\Container;
 use Tuum\Router\RouteCollector;
-use Tuum\View\Tuum\Renderer;
+use Tuum\View\Renderer;
 use Tuum\Web\Application;
 use Tuum\Web\Stack\RouterStack;
 use Tuum\Web\Web;
 
-/** @var Application $app */
-/** @var RouterStack $routeStack */
+/** @var Web $app */
+/** @var RouterStack $stack */
 /** @var RouteCollector $routes */
 /** @var Container $dic */
 
 /**
  * set up TaskDao factory.
  */
-$app->set( TaskDao::class, function() use($dic) {
-    return new TaskDao($dic->get(Web::VAR_DATA_DIR).'/data/tasks.csv');
+$app->set( TaskDao::class, function() use($app) {
+    return new TaskDao($app->vars_dir.'/data/tasks.csv');
 });
 
 
@@ -29,8 +29,7 @@ $app->set( TaskDao::class, function() use($dic) {
  * using {*} so that task application does not have to
  * know its root directory.
  */
-$routeStack = $app->get(Web::ROUTER_STACK);
-$routes     = $routeStack->getRouting();
+$routes     = $stack->getRouting();
 
 $routes->any('/*', TaskController::class);
 
@@ -51,4 +50,4 @@ if (isset($view_dir) && $view_dir) {
     $views->locator->addRoot(dirname(__DIR__) . '/views');
 }
 
-return $routeStack;
+return $stack;
