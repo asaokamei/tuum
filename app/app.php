@@ -44,8 +44,8 @@ $app
         __DIR__ . '/documents'
     )
     ->pushRoutes([
-        __DIR__ . '/routes',
-        __DIR__ . '/route-tasks'
+        $app->config_dir.'/routes',
+        $app->config_dir.'/route-tasks'
     ]);
 
 // add a closure for testing purpose only. 

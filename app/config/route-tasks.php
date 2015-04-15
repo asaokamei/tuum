@@ -15,7 +15,7 @@ use Tuum\Web\Stack\RouterStack;
  * set root directory for the demo application using {*}
  * (so that the app does not have to know the root directory).
  */
-$task_dir   = dirname(__DIR__) . '/src/Tasks';
+$task_dir   = dirname(dirname(__DIR__)) . '/src/Tasks';
 $app->configure(
     $task_dir . '/scripts/getRouterStack', [
         'stack' => $stack,

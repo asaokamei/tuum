@@ -5,7 +5,6 @@ use Tuum\Router\RouteCollector;
 use Tuum\Web\Psr7\Request;
 use Tuum\Web\Stack\RouterStack;
 use Tuum\Web\Application;
-use Tuum\Web\Web;
 
 /** @var Application $app */
 
