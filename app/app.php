@@ -32,7 +32,7 @@ include __DIR__ . '/utils/boot-compiled.php';
 $app = Web::forge(__DIR__);
 $app
     ->loadConfig($debug)
-    ->loadEnvironment($app->vars_dir . '/environment')
+    ->loadEnvironment($app->vars_dir . '/env')
     ->pushErrorStack([
         Respond::ACCESS_DENIED  => 'errors/forbidden',
         Respond::FILE_NOT_FOUND => 'errors/not-found',
