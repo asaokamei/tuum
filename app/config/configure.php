@@ -1,18 +1,11 @@
 <?php
 
-use League\Container\Container;
 use Monolog\Handler\FingersCrossedHandler;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
-use Tuum\Form\Dates;
-use Tuum\Form\Forms;
-use Tuum\Locator\Locator;
-use Tuum\View\ErrorView;
-use Tuum\View\Renderer;
 use Tuum\Web\Web;
-use Tuum\Web\Psr7\Respond;
 
-/** @var Container $dic */
+/** @var Web $app */
 
 /**
  * shared Logger

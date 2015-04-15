@@ -11,6 +11,9 @@ use Tuum\Web\Application;
  * @return Application
  */
 
+if(!isset($debug) || !$debug) {
+    return;
+}
 if(!isset($var_dir)) {
     $var_dir = dirname(dirname(__DIR__)).'/var';
 }

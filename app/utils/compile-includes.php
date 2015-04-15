@@ -14,9 +14,6 @@ use Tuum\Web\Application;
 use Tuum\Web\Psr7\RequestFactory;
 use Tuum\Web\Web;
 
-$vendor_dir = dirname(dirname(__DIR__)).'/vendor';
-require_once( $vendor_dir.'/autoload.php');
-
 $config = ClassLoader::getIncludes(function( ClassLoader $loader) {
 
     $loader->register();
@@ -37,20 +34,12 @@ $config = ClassLoader::getIncludes(function( ClassLoader $loader) {
      */
     /** @var Closure $boot */
     /** @var Web $app */
-    $app = Web::forge(dirname(__DIR__), true);
-    $app->setup()
-        ->pushErrorStack([])
-        ->pushSessionStack()
-        ->pushCsRfStack()
-        ->pushViewStack()
-        ->pushUrlMapper(
-            dirname(__DIR__).'/documents'
-        )
-        ->pushRoutes([
-            dirname(__DIR__).'/routes'
-        ])
-    ;
+    $xhProf_limit = false;
+    $debug        = false;
+    $app = include dirname(__DIR__).'/app.php';
+
     $request  = RequestFactory::fromPath('no-such');
+    $respond  = $app->__invoke($request);
     $request->respond()->asForbidden();
     
     /**

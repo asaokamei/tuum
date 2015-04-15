@@ -6,14 +6,17 @@
 if (!function_exists('xhprof_enable')) {
     return;
 }
-if (!isset($slow_limit)) {
-    $slow_limit = '1.0'; // default threshold in second.
+if (!isset($xhProf_limit)) {
+    $xhProf_limit = '1.0'; // default threshold in second.
+}
+elseif ($xhProf_limit === false) {
+    return;
 }
 
 /*
  * starting xh-profiler
  */
-call_user_func(function () use($slow_limit) {
+call_user_func(function () use($xhProf_limit) {
 
     xhprof_enable();
     $start_time = microtime(true);
@@ -23,11 +26,11 @@ call_user_func(function () use($slow_limit) {
     /*
      * register xh-prof at shutdown.
      */
-    register_shutdown_function(function () use ($app_name, $prof_root, $start_time, $slow_limit) {
+    register_shutdown_function(function () use ($app_name, $prof_root, $start_time, $xhProf_limit) {
 
         $xhprof_data = xhprof_disable();
         $end_time    = microtime(true);
-        if ($end_time - $start_time < $slow_limit) {
+        if ($end_time - $start_time < $xhProf_limit) {
             return;
         }
 
