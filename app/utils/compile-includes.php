@@ -35,7 +35,7 @@ $config = ClassLoader::getIncludes(function( ClassLoader $loader) {
             dirname(__DIR__).'/documents'
         )
         ->pushRoutes([
-            dirname(__DIR__).'/routes.php'
+            dirname(__DIR__).'/routes'
         ])
     ;
     $request  = RequestFactory::fromPath('no-such');
