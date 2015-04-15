@@ -1,7 +1,6 @@
 <?php
 use Tuum\Web\Psr7\Request;
 use Tuum\Web\Psr7\RequestFactory;
-use Tuum\Web\Application;
 use Tuum\Web\Psr7\Respond;
 use Tuum\Web\Web;
 
@@ -9,7 +8,7 @@ require_once( dirname( __DIR__ ) . '/vendor/autoload.php' );
 
 /** @var Web $app */
 
-$debug = false;
+$debug = true;
 
 date_default_timezone_set('Asia/Tokyo');
 
@@ -18,7 +17,7 @@ date_default_timezone_set('Asia/Tokyo');
  */
 
 // xhprof profiling
-include __DIR__.'/utils/xhprof.php';
+include __DIR__ . '/utils/boot-xhprof.php';
 
 // read compiled class files.
 include __DIR__ . '/utils/boot-compiled.php';
@@ -39,8 +38,8 @@ $app
         __DIR__.'/documents'
     )
     ->pushRoutes([
-        __DIR__.'/routes.php',
-        __DIR__.'/route-tasks.php'
+        __DIR__.'/routes',
+        __DIR__.'/route-tasks'
     ])
 ;
 

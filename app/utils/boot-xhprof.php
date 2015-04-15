@@ -34,7 +34,9 @@ call_user_func(function () use($slow_limit) {
         include_once $prof_root . '/xhprof_lib/utils/xhprof_lib.php';
         include_once $prof_root . '/xhprof_lib/utils/xhprof_runs.php';
 
+        /** @noinspection PhpUndefinedClassInspection */
         $xhprof_runs = new XHProfRuns_Default();
+        /** @noinspection PhpUndefinedMethodInspection */
         $xhprof_runs->save_run($xhprof_data, $app_name);
 
     });
