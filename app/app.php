@@ -29,9 +29,10 @@ include __DIR__ . '/utils/boot-compiled.php';
 # build and configure $app.
 #
 
-$app = Web::forge(__DIR__, $debug);
+$app = Web::forge(__DIR__);
 $app
-    ->loadConfig()
+    ->loadConfig($debug)
+    ->loadEnvironment($app->vars_dir . '/environment')
     ->pushErrorStack([
         Respond::ACCESS_DENIED  => 'errors/forbidden',
         Respond::FILE_NOT_FOUND => 'errors/not-found',
