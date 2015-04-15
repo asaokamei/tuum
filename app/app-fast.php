@@ -12,8 +12,9 @@ require_once(dirname(__DIR__) . '/vendor/autoload.php');
 # build and configure $app.
 #
 
-return Web::forge(__DIR__)
-    ->pushRoutes([
-        __DIR__ . '/routes',
+$app =Web::forge(__DIR__);
+$app->pushRoutes([
+        $app->config_dir . '/route-fast',
     ]);
 
+return $app;
