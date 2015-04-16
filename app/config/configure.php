@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * configuration for application.
+ */
 use Monolog\Handler\FingersCrossedHandler;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;

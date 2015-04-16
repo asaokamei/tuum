@@ -5,14 +5,14 @@ use Monolog\Handler\BrowserConsoleHandler;
 use Monolog\Logger;
 use Tuum\Web\Web;
 
-/** @var Container $dic */
+/** @var Web $app */
 
 /**
  * set up logger for browser's console
  */
 
 /** @var Logger $logger */
-$logger = $dic->get(Web::LOGGER);
+$logger = $app->getLog();
 
 if($logger) {
     $logger->pushHandler(
