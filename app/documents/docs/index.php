@@ -6,7 +6,7 @@
 <?php $this->blockAsSection('docs/sub-menu', 'sub-menu', ['current'=>'index']); ?>
 
 <?php $this->startSection() ?>
-<li><a href="/docs/index.php" >documents</a></li>
+<li><a href="/docs/index.php" >Documents</a></li>
 <li class="active">top</li>
 <?php $this->endSectionAs('breadcrumb'); ?>
 
