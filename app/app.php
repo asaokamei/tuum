@@ -5,7 +5,6 @@
  */
 
 use Tuum\Web\Psr7\Request;
-use Tuum\Web\Psr7\Respond;
 use Tuum\Web\Web;
 
 require_once(dirname(__DIR__) . '/vendor/autoload.php');
@@ -29,14 +28,11 @@ include __DIR__ . '/utils/boot-compiled.php';
 # build and configure $app.
 #
 
-$app = Web::forge(__DIR__);
+$app = Web::forge(__DIR__, $debug);
 $app
-    ->loadConfig($debug)
+    ->loadConfig()
     ->loadEnvironment($app->vars_dir . '/env')
-    ->pushErrorStack([
-        Respond::ACCESS_DENIED  => 'errors/forbidden',
-        Respond::FILE_NOT_FOUND => 'errors/not-found',
-    ])
+    ->catchError()
     ->pushSessionStack()
     ->pushCsRfStack()
     ->pushViewStack()
@@ -48,7 +44,7 @@ $app
         $app->config_dir.'/route-tasks'
     ]);
 
-// add a closure for testing purpose only. 
+# add a closure for testing purpose only.
 $app->prepend(
     function ($request, $next) {
         /** @var Request $request */

@@ -21,10 +21,10 @@
 
 <h3>URL Map Samples</h3>
 <ul>
-    <li><a href="docs/tuum.html" >html file</a></li>
-    <li><a href="docs/tuum.txt" >text file</a></li>
-    <li><a href="docs/tuum.md" >markdown file (not found)</a></li>
-    <li><a href="docs/errors.php" >php exception thrown</a></li>
+    <li><a href="tuum.html" >html file</a></li>
+    <li><a href="tuum.txt" >text file</a></li>
+    <li><a href="tuum.md" >markdown file (not found)</a></li>
+    <li><a href="errors.php" >php exception thrown</a></li>
 </ul>
 
 </body>
