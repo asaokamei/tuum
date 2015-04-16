@@ -3,21 +3,11 @@
 /**
  * enable xh-profiler
  */
-if (!function_exists('xhprof_enable')) {
-    return;
-}
-if (!isset($xhProf_limit)) {
-    $xhProf_limit = '1.0'; // default threshold in second.
-}
-elseif ($xhProf_limit === false) {
-    return;
-}
+return function ($xhProf_limit) {
 
-/*
- * starting xh-profiler
- */
-call_user_func(function () use($xhProf_limit) {
-
+    if (!function_exists('xhprof_enable')) {
+        return;
+    }
     xhprof_enable();
     $start_time = microtime(true);
     $app_name   = 'Tuum';
@@ -44,4 +34,4 @@ call_user_func(function () use($xhProf_limit) {
 
     });
 
-});
+};
