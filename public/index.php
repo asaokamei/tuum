@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This is TuumPHP 
+ * This is Tuum
  */
 
 use Tuum\Web\Psr7\RequestFactory;

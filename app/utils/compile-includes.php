@@ -1,7 +1,7 @@
 <?php
 
 /**
- * script to gather used classes for TuumPHP
+ * script to gather used classes for Tuum
  */
 
 use Aura\Session\SessionFactory;
@@ -48,7 +48,7 @@ $config = ClassLoader::getIncludes(function( ClassLoader $loader) {
      */
     $session_factory = new SessionFactory;
     $session         = $session_factory->newInstance($_COOKIE);
-    $segment = $session->getSegment('TuumPHP/WebApplication');
+    $segment = $session->getSegment('TuumFW');
     $session->getCsrfToken('sample-token');
     $segment->getFlash('flashed');
     /**

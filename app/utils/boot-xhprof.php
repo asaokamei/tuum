@@ -20,7 +20,7 @@ call_user_func(function () use($xhProf_limit) {
 
     xhprof_enable();
     $start_time = microtime(true);
-    $app_name   = 'TuumPHP';
+    $app_name   = 'Tuum';
     $prof_root  = '/usr/local/Cellar/php56-xhprof/254eb24';
 
     /*

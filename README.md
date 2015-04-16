@@ -1,7 +1,7 @@
-TuumPHP/demo
+Tuum/demo
 ============
 
-a demo and development project for TuumPHP.
+a demo and development project for Tuum.
 
 ### License
 

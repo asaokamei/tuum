@@ -5,8 +5,8 @@
 <?php $this->startSection(); ?>
 
 <div class="jumbotron" style="margin-top:20px;">
-    <h1>TuumPHP framework</h1>
-    <p>TuumPHP is yet-another micro framework for PHP.</p>
+    <h1>Tuum framework</h1>
+    <p>Tuum is yet-another PHP framework for building a web site.</p>
     <p><a href="https://github.com/TuumPHP/" target="_blank">source code≫</a></p>
 </div>
 
@@ -34,7 +34,7 @@
 </div>
 
 <div class="col-md-4">
-    <h3><a href="sample/?name=TuumPHP" >Controller Sample</a></h3>
+    <h3><a href="sample/?name=Tuum+framework" >Controller Sample</a></h3>
     <p>This samples use SampleController class to render various pages.</p>
 </div>
 

@@ -11,7 +11,7 @@
 <!Doctype html>
 <html>
 <head>
-    <title>TuumPHP is here</title>
+    <title>Tuum is here</title>
 </head>
 <body>
 <h1>PHP View File</h1>
