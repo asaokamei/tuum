@@ -3,9 +3,11 @@
 
 <?php $view->data['current'] = 'maps'; ?>
 
+<?php $this->blockAsSection('docs/sub-menu', 'sub-menu', ['current'=>'index']); ?>
+
 <?php $this->startSection() ?>
-<li><a href="/docs/index.php" >URL Map Sample</a></li>
-<li class="active">PHP File</li>
+<li><a href="/docs/index.php" >documents</a></li>
+<li class="active">top</li>
 <?php $this->endSectionAs('breadcrumb'); ?>
 
 <!Doctype html>
