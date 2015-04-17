@@ -38,8 +38,8 @@ $app
     ->loadEnvironment($app->vars_dir . '/env')
     ->catchError()
     ->pushSessionStack()
-    ->pushCsRfStack()
     ->pushViewStack()
+    ->pushCsRfStack()
     ->pushUrlMapper(
         __DIR__ . '/documents'
     )

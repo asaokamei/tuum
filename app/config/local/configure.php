@@ -2,12 +2,10 @@
 /**
  * set up for local environment.
  */
-use League\Container\Container;
-use Monolog\Logger;
 use Tuum\Web\Web;
 
-/** @var Web $app */
+/** @var Web $web */
 
-$logger = $app->getLog();
+$logger = $web->getLog();
 $logger->info('local configuration.');
 

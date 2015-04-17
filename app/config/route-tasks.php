@@ -4,7 +4,9 @@ use Tuum\View\Renderer;
 use Tuum\Web\Application;
 use Tuum\Web\Psr7\Request;
 use Tuum\Web\Stack\RouterStack;
+use Tuum\Web\Web;
 
+/** @var Web $web */
 /** @var Application $app */
 /** @var RouterStack $stack */
 /** @var Renderer $views */
@@ -18,6 +20,7 @@ use Tuum\Web\Stack\RouterStack;
 $task_dir   = dirname(dirname(__DIR__)) . '/src/Tasks';
 $app->configure(
     $task_dir . '/scripts/getRouterStack', [
+        'web'  => $web,
         'stack' => $stack,
         'view_dir' => null,
     ]

@@ -9,7 +9,8 @@ use Tuum\Web\Application;
 use Tuum\Web\Stack\RouterStack;
 use Tuum\Web\Web;
 
-/** @var Web $app */
+/** @var Web $web */
+/** @var Application $app */
 /** @var RouterStack $stack */
 /** @var RouteCollector $routes */
 /** @var Container $dic */
@@ -17,8 +18,8 @@ use Tuum\Web\Web;
 /**
  * set up TaskDao factory.
  */
-$app->set( TaskDao::class, function() use($app) {
-    return new TaskDao($app->vars_dir.'/data/tasks.csv');
+$app->set( TaskDao::class, function() use($web) {
+    return new TaskDao($web->vars_dir.'/data/tasks.csv');
 });
 
 

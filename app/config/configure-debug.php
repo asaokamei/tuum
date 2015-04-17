@@ -1,18 +1,17 @@
 <?php
 
-use League\Container\Container;
 use Monolog\Handler\BrowserConsoleHandler;
 use Monolog\Logger;
 use Tuum\Web\Web;
 
-/** @var Web $app */
+/** @var Web $web */
 
 /**
  * set up logger for browser's console
  */
 
 /** @var Logger $logger */
-$logger = $app->getLog();
+$logger = $web->getLog();
 
 if($logger) {
     $logger->pushHandler(
