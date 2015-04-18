@@ -5,12 +5,8 @@
 use Monolog\Handler\FingersCrossedHandler;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
-use Tuum\Locator\Locator;
-use Tuum\View\Renderer;
 use Tuum\Web\Application;
 use Tuum\Web\Psr7\Respond;
-use Tuum\Web\View\Value;
-use Tuum\Web\View\View;
 use Tuum\Web\Web;
 
 /** @var Application $web */
@@ -32,19 +28,6 @@ $app->set(
         );
         return $logger;
 }, true);
-
-$app->set(
-    Web::RENDER_ENGINE,
-    function() use($web) {
-        $locator = new Locator($web->view_dir);
-        if ($doc_root = $web->docs_dir) {
-            // also render php documents
-            $locator->addRoot($doc_root);
-        }
-        $renderer = new Renderer($locator);
-        return new View($renderer, new Value());
-    }, true
-);
 
 /**
  * set up default layout file for templates.
