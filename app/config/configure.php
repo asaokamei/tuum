@@ -17,7 +17,9 @@ $web->getViewEngine()->setLayout('/layout/layout');
 /**
  * set up template files for error by error number.
  */
-$app->set( Web::ERROR_VIEWS, [
-    Respond::ACCESS_DENIED  => 'errors/forbidden',
-    Respond::FILE_NOT_FOUND => 'errors/not-found',
-]);
+$app->set( Web::ERROR_VIEWS,
+    [
+        'errors/error', // default error view
+        Respond::ACCESS_DENIED  => 'errors/forbidden',
+        Respond::FILE_NOT_FOUND => 'errors/not-found',
+    ]);

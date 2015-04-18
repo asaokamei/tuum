@@ -1,5 +1,13 @@
 <?php
-
+/**
+ * routes.php
+ * 
+ * configures routes for the web application. 
+ * 
+ * receives $stack as RouterStack to start. 
+ * must return the $stack to push to the stack.
+ * 
+ */
 use Demo\Site\SampleController;
 use Tuum\Router\RouteCollector;
 use Tuum\Web\Psr7\Request;
@@ -7,19 +15,16 @@ use Tuum\Web\Stack\RouterStack;
 use Tuum\Web\Application;
 
 /** @var Application $app */
-
-// --------------------
-// create basic routers
-// --------------------
-
 /** @var RouterStack $stack */
 /** @var RouteCollector $routes */
 
+/**
+ * start routing using RouteCollection object, $routes. 
+ */
+
 $routes = $stack->getRouting();
 
-// ----------
-// add routes
-// ----------
+// main root
 
 $routes->get( '/', function($request) {
     /** @var Request $request */
@@ -63,9 +68,10 @@ $routes->group(
 
     });
 
-/*
- * add sample controller
+/**
+ * add sample controller route
  */
+
 $routes->any( '/sample{*}', SampleController::class)->before(
     function($request, $next) {
         /** @var Request $request */
@@ -73,8 +79,12 @@ $routes->any( '/sample{*}', SampleController::class)->before(
         return $next? $next($request->withAttribute('current', 'controller')): null;
     });
 
-/* -------------------
- * create router stack 
+
+/** ---------------------------------------------------
+ * finished routing. 
+ * 
+ * must return the router stack from routes file. 
+ * or return null not to push to the middleware stack. 
  */
 
 return $stack;
