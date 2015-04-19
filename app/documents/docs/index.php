@@ -24,7 +24,7 @@
     <li><a href="tuum.html" >html file</a></li>
     <li><a href="non-such.html">not found</a></li>
     <li><a href="tuum.txt" >text file</a></li>
-    <li><a href="marked.md" >markdown file</a></li>
+    <li><a href="marked" >markdown file</a> (<a href="marked.md" >markdown file</a>)</li>
     <li><a href="errors" >php exception thrown</a></li>
 </ul>
 
