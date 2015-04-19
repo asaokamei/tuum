@@ -6,7 +6,7 @@ $activate = function($case) use($current) {
 ?>
 
 <ul class="nav nav-pills nav-stacked">
-    <li role="presentation" <?= $activate('index')?>><a href="/docs/index.php" >Document Top</a></li>
+    <li role="presentation" <?= $activate('index')?>><a href="/docs/index" >Document Top</a></li>
 </ul>
 
 <p class="nav-header">Quick Start</p>
