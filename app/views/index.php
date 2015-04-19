@@ -13,10 +13,10 @@
 <?php $this->endSectionAs('jumbotron'); ?>
 
 <div class="col-md-4">
-    <h3><a href="docs/index.php" >Documents</a></h3>
+    <h3><a href="docs/index" >Documents</a></h3>
     <p>Documents on how to install and use the Tuum framework, as well as the background of the design.</p>
     <ul>
-        <li><a href="#" >Document Top</a></li>
+        <li><a href="docs/index" >Document Top</a></li>
         <li><a href="#" >Quick Start</a></li>
         <li><a href="#" >Technical Design</a></li>
     </ul>

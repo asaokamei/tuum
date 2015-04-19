@@ -34,9 +34,6 @@ call_user_func(
 
 
 $app = Web::forge(__DIR__, $debug);
-
-$docs = new \Tuum\Web\Stack\DocView(new \Tuum\Locator\Locator(__DIR__ . '/documents'));
-$docs->enable_raw = true;
 $app
     ->loadConfig()
     ->loadEnvironment($app->vars_dir . '/env')
@@ -44,11 +41,11 @@ $app
     ->pushSessionStack()
     ->pushViewStack()
     ->pushCsRfStack()
-    ->push($docs)
     /*
     ->pushUrlMapper(
         __DIR__ . '/documents'
     )*/
+    ->pushDocView(__DIR__ . '/documents')
     ->pushRoutes([
         $app->config_dir.'/routes',
         $app->config_dir.'/route-tasks'
