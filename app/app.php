@@ -43,7 +43,7 @@ $app
     ->pushCsRfStack()
     ->pushConfig($app->config_dir . '/routes')
     ->pushConfig($app->config_dir . '/route-tasks')
-    ->pushDocView(__DIR__ . '/documents')
+    ->pushConfig($app->config_dir . '/documents')
 ;
 
 # add a closure for testing purpose only.
