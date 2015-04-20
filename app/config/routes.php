@@ -13,7 +13,9 @@ use Tuum\Router\RouteCollector;
 use Tuum\Web\Psr7\Request;
 use Tuum\Web\Stack\RouterStack;
 use Tuum\Web\Application;
+use Tuum\Web\Web;
 
+/** @var Web $web */
 /** @var Application $app */
 /** @var RouterStack $stack */
 /** @var RouteCollector $routes */
@@ -22,6 +24,7 @@ use Tuum\Web\Application;
  * start routing using RouteCollection object, $routes. 
  */
 
+$stack  = $web->getRouterStack();
 $routes = $stack->getRouting();
 
 // main root

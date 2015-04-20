@@ -2,10 +2,13 @@
 use Tuum\Router\RouteCollector;
 use Tuum\Web\Psr7\Request;
 use Tuum\Web\Stack\RouterStack;
+use Tuum\Web\Web;
 
+/** @var Web $web */
 /** @var RouterStack $stack */
 /** @var RouteCollector $routes */
 
+$stack  = $web->getRouterStack();
 $routes = $stack->getRouting();
 
 $routes->any('/*', function ($request) {

@@ -41,15 +41,10 @@ $app
     ->pushSessionStack()
     ->pushViewStack()
     ->pushCsRfStack()
-    /*
-    ->pushUrlMapper(
-        __DIR__ . '/documents'
-    )*/
+    ->pushConfig($app->config_dir . '/routes')
+    ->pushConfig($app->config_dir . '/route-tasks')
     ->pushDocView(__DIR__ . '/documents')
-    ->pushRoutes([
-        $app->config_dir.'/routes',
-        $app->config_dir.'/route-tasks'
-    ]);
+;
 
 # add a closure for testing purpose only.
 $app->prepend(

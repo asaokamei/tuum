@@ -16,8 +16,6 @@ include __DIR__ . '/utils/boot-xhprof.php';
 #
 
 $app =Web::forge(__DIR__);
-$app->pushRoutes([
-        $app->config_dir . '/route-fast',
-    ]);
+$app->pushConfig($app->config_dir . '/route-fast');
 
 return $app;
