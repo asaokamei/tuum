@@ -1,5 +1,8 @@
 <?php
-$current = isset($current) ? $current : 'index';
+use Tuum\Web\View\Value;
+/** @var Value $view */
+
+$current  = isset($current) ? $current: 'index';
 $activate = function($case) use($current) {
     return $case === $current ? ' class="active"': '';
 }
@@ -11,13 +14,14 @@ $activate = function($case) use($current) {
 
 <p class="nav-header">Quick Start</p>
 <ul class="nav nav-pills nav-stacked">
-    <li<?= $activate('quick-install')?>><a href="#" >Install</a></li>
-    <li<?= $activate('quick-route')?>><a href="#" >Routing</a></li>
-    <li<?= $activate('quick-controller')?>><a href="#" >View and Controller</a></li>
+    <li<?= $activate('quick-install')?>><a href="/docs/quick-install" >Installation</a></li>
+    <li<?= $activate('quick-routing')?>><a href="/docs/quick-routing" >Routes File</a></li>
+    <li<?= $activate('quick-controller')?>><a href="/docs/quick-controller" >Controller and View</a></li>
 </ul>
 
 <p class="nav-header">Manual</p>
 <ul class="nav nav-pills nav-stacked">
+    <li<?= $activate('manual-http')?>><a href="#" >Request and Response</a></li>
     <li<?= $activate('manual-middleware')?>><a href="#" >Middleware</a></li>
     <li<?= $activate('manual-view')?>><a href="#" >View</a></li>
     <li<?= $activate('manual-forms')?>><a href="#" >Form Helper</a></li>

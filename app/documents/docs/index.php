@@ -9,3 +9,12 @@
     <li><a href="marked" >markdown file</a> (<a href="marked.md" >raw markdown file</a>)</li>
     <li><a href="errors" >php exception thrown</a></li>
 </ul>
+
+<h3>License</h3>
+
+<a href="/docs/license" >MIT License</a> (<a href="/docs/license.txt" >raw text</a>).
+
+<h3>System Requirements</h3>
+
+<p>Tuum framework is developed against PHP >= 5.6.0.</p>
+
