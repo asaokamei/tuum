@@ -1,20 +1,12 @@
 <?php
 /**
- * This is an interim layout for Documents rendered by DocView.
+ * This is sub-menu for docs/ view files. 
  */
 
 /** @var \Tuum\View\Renderer $this */
 /** @var \Tuum\Web\View\Value $view */
 
 $file_name   = isset($file_name) ? $file_name: 'index';
-$titleList   = [
-    'index'            => 'Documents Top',
-    'quick-install'    => 'Installation',
-    'quick-routing'    => 'Routes File',
-    'quick-controller' => 'Controller and View',
-    '' => '',
-];
-$bread_title = isset($titleList[$file_name]) ? $titleList[$file_name] : 'Documents';
 $activate    = function($case) use($file_name) {
     return $case === $file_name ? ' class="active"': '';
 };
@@ -22,26 +14,8 @@ $activate    = function($case) use($file_name) {
 /**
  * set up the master layout. 
  */
-$this->setLayout('layout/layout'); 
-$view->data['current'] = 'maps'; 
 ?>
 
-<?php
-/**
- * start of BreadCrumb section.
- */
-$this->startSection() 
-?>
-<li><a href="/docs/index" >Documents</a></li>
-<li class="active"><?= $bread_title ?></li>
-<?php $this->endSectionAs('breadcrumb'); ?>
-
-<?php
-/**
- * start of sub-menu section.
- */
-$this->startSection() 
-?>
 <ul class="nav nav-pills nav-stacked">
     <li role="presentation" <?= $activate('index')?>><a href="/docs/index" >Document Top</a></li>
 </ul>
@@ -63,11 +37,4 @@ $this->startSection()
     <li<?= $activate('manual-controller')?>><a href="#" >Controller</a></li>
     <li<?= $activate('manual-performance')?>><a href="#" >Performance</a></li>
 </ul>
-<?php $this->endSectionAs('sub-menu'); ?>
-
-<?=
-/**
- * output contents.
- */
-$this->getContent();?>
 

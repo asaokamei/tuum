@@ -4,6 +4,7 @@
  * Create The Web Application, $app.
  */
 
+use Demo\Site\ViewComposer;
 use Tuum\Web\Psr7\Request;
 use Tuum\Web\Web;
 
@@ -41,6 +42,7 @@ $app
     ->pushSessionStack()
     ->pushViewStack()
     ->pushCsRfStack()
+    ->push($app->get(ViewComposer::class))
     ->pushConfig($app->config_dir . '/routes')
     ->pushConfig($app->config_dir . '/route-tasks')
     ->pushConfig($app->config_dir . '/documents')

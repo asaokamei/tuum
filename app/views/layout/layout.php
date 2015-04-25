@@ -11,7 +11,7 @@ if (!isset($title)) {
 }
 
 // set menu highlight
-$current = $view->data->current ?: 'none';
+$current = $view->data->navMenu ?: 'none';
 $activate = function($case) use($current) {
     return $case === $current ? ' class="active"': '';
 };
@@ -66,9 +66,9 @@ $activate = function($case) use($current) {
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li<?= $activate('maps');?>><a href="/docs/index">Documents</a></li>
+                <li<?= $activate('docs');?>><a href="/docs/index">Documents</a></li>
                 <li<?= $activate('closure');?>><a href="/closure/view">Closure Sample</a></li>
-                <li<?= $activate('controller');?>><a href="/sample?name=Tuum+framework">Controller Sample</a></li>
+                <li<?= $activate('sample');?>><a href="/sample?name=Tuum+framework">Controller Sample</a></li>
                 <li<?= $activate('demoTasks' );?>><a href="/demoTasks">Task Demo</a></li>
             </ul>
         </div>
