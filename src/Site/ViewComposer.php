@@ -28,7 +28,7 @@ class ViewComposer implements ReleaseInterface
         if (is_null($response)) {
             $response = $request->respond()->asNotFound();
         }
-        if ($response->isType(Response::TYPE_REDIRECT)) {
+        if (!$response->getBody() instanceof ViewStream) {
             return $response;
         }
 
@@ -87,12 +87,6 @@ class ViewComposer implements ReleaseInterface
         // start with file name. 
         $file_name = basename($request->getUri()->getPath());
 
-        // normalize file name. 
-        $fileLookUp = [
-            'license' => 'index',
-        ];
-        $file_name = isset($fileLookUp[$file_name]) ? $fileLookUp[$file_name]: $file_name;
-
         // find breadcrumb title. 
         $titleList   = [
             'index'            => 'Documents Top',
@@ -101,7 +95,8 @@ class ViewComposer implements ReleaseInterface
             'quick-controller' => 'Controller and View',
             '' => '',
         ];
-        $breadTitle = isset($titleList[$file_name]) ?$titleList[$file_name]:'Documents Top';
+        $file_name = isset($titleList[$file_name]) ? $file_name: 'index';
+        $breadTitle = $titleList[$file_name];
         $breadcrumb = "<li><a href=\"/docs/index\" >Documents</a></li>\n".
             "<li class=\"active\">{$breadTitle}</li>";
         
