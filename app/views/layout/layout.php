@@ -11,7 +11,7 @@ if (!isset($title)) {
 }
 
 // set menu highlight
-$current = $view->data->navMenu ?: 'none';
+$current = isset($navMenu) ? $navMenu: 'none';
 $activate = function($case) use($current) {
     return $case === $current ? ' class="active"': '';
 };

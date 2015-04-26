@@ -16,9 +16,6 @@ class ViewComposer implements ReleaseInterface
      */
     public function __invoke($request, $next = null)
     {
-        $path = $request->getUri()->getPath();
-        $root = explode('/', trim($path,'/'))[0];
-        return $next ? $next($request->withAttribute('navMenu', $root)): null;
     }
 
     /**
@@ -34,29 +31,22 @@ class ViewComposer implements ReleaseInterface
         if (!$response->isType(Response::TYPE_VIEW)) {
             return $response;
         }
-        /**
-         * set up default layout file for templates.
-         */
-        /** @var ViewStream $view */
-        $view = $response->getBody();
-        $view->modRenderer(function($renderer) {
-            /** @var Renderer $renderer */
-            $renderer->setLayout('/layout/layout');
-        });
-        /**
-         * set up for docs directory served by DocView. 
-         */
-        if ($request->getAttribute('navMenu') === 'docs') {
-            return $this->viewDocs($request, $response);
+
+        $this->setLayout($request, $response);
+        
+        $root = explode('/', trim($request->getUri()->getPath(), '/'))[0];
+        if ($root === 'docs') {
+            $this->viewDocs($request, $response);
         }
 
         return $response;
     }
 
     /**
+     * set up for docs directory served by DocView.
+     * 
      * @param Request  $request
      * @param Response $response
-     * @return Response
      */
     private function viewDocs($request, $response)
     {
@@ -89,7 +79,23 @@ class ViewComposer implements ReleaseInterface
             $renderer->blockAsSection('layout/docs-layout', 'sub-menu', ['file_name' => $file_name]);
             return $renderer;
         });
-        
-        return $response;
+    }
+
+    /**
+     * set up default layout file for templates.
+     * 
+     * @param Request  $request
+     * @param Response $response
+     */
+    private function setLayout($request, $response)
+    {
+        $path = $request->getUri()->getPath();
+        $root = explode('/', trim($path, '/'))[0];
+        /** @var ViewStream $view */
+        $view = $response->getBody();
+        $view->modRenderer(function ($renderer) use ($root) {
+            /** @var Renderer $renderer */
+            $renderer->setLayout('/layout/layout', ['navMenu' => $root]);
+        });
     }
 }
