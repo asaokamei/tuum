@@ -10,11 +10,6 @@ use Tuum\Web\Web;
 /** @var Web $web */
 
 /**
- * set up default layout file for templates.
- */
-$web->getViewEngine()->setLayout('/layout/layout');
-
-/**
  * set up template files for error by error number.
  */
 $app->set( Web::ERROR_VIEWS,

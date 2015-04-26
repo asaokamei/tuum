@@ -1,3 +1,8 @@
+<?php
+/** @var Tuum\View\Renderer $this */
+$this->setLayout('layout/layout');
+
+?>
 
 <h1>Not Found</h1>
 

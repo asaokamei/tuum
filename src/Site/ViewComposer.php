@@ -31,7 +31,22 @@ class ViewComposer implements ReleaseInterface
         if (is_null($response)) {
             $response = $request->respond()->asNotFound();
         }
-        if ($request->getAttribute('navMenu') === 'docs' && $response->isType(Response::TYPE_VIEW)) {
+        if (!$response->isType(Response::TYPE_VIEW)) {
+            return $response;
+        }
+        /**
+         * set up default layout file for templates.
+         */
+        /** @var ViewStream $view */
+        $view = $response->getBody();
+        $view->modRenderer(function($renderer) {
+            /** @var Renderer $renderer */
+            $renderer->setLayout('/layout/layout');
+        });
+        /**
+         * set up for docs directory served by DocView. 
+         */
+        if ($request->getAttribute('navMenu') === 'docs') {
             return $this->viewDocs($request, $response);
         }
 
