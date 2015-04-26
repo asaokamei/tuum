@@ -5,7 +5,7 @@ use Demo\Tasks\TaskDao;
 use League\Container\Container;
 use Tuum\Router\RouteCollector;
 use Tuum\View\Renderer;
-use Tuum\View\ViewEngineInterface;
+use Tuum\Web\View\ViewEngineInterface;
 use Tuum\Web\Application;
 use Tuum\Web\Stack\RouterStack;
 use Tuum\Web\Web;
@@ -43,13 +43,15 @@ $routes->any('/*', TaskController::class);
  * specify another directory if there are another
  * view directory prepared for the demo.
  */
-/** @var Renderer $views */
+/** @var ViewEngineInterface $views */
 $views = $app->get(ViewEngineInterface::class);
 
-if (isset($view_dir) && $view_dir) {
-    $views->locator->addRoot($view_dir);
-} else {
-    $views->locator->addRoot(dirname(__DIR__) . '/views');
+if (!isset($view_dir) || !$view_dir) {
+    $view_dir = dirname(__DIR__) . '/views';
 }
+$views->modRenderer(function($renderer) use($view_dir) {
+    /** @var Renderer $renderer */
+    $renderer->locator->addRoot($view_dir);
+});
 
 return $stack;
