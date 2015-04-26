@@ -28,7 +28,7 @@ class ViewComposer implements ReleaseInterface
         if (is_null($response)) {
             $response = $request->respond()->asNotFound();
         }
-        if (!$response->isType(Response::TYPE_VIEW)) {
+        if ($response->isType(Response::TYPE_REDIRECT)) {
             return $response;
         }
 
@@ -38,8 +38,42 @@ class ViewComposer implements ReleaseInterface
         if ($root === 'docs') {
             $this->viewDocs($request, $response);
         }
+        elseif ($root === 'demoTasks') {
+            $this->viewDemoTasks($request, $response, $root);
+        }
 
         return $response;
+    }
+
+    /**
+     * set up for docs directory served by DocView.
+     *
+     * @param Request  $request
+     * @param Response $response
+     */
+    private function viewDemoTasks($request, $response, $root)
+    {
+        // start with file name. 
+        $file_name = basename($request->getUri()->getPath());
+        // find breadcrumb title. 
+        $titleList   = [
+            'index'   => 'Task List',
+            'create'   => 'Create New Task',
+            'init'     => 'Initialization',
+        ];
+        $file_name = isset($titleList[$file_name]) ? $file_name: 'index';
+        $breadTitle = $titleList[$file_name];
+        $breadcrumb = "<li><a href=\"/demoTasks/\" >Task Demo</a></li>\n".
+            "<li class=\"active\">{$breadTitle}</li>";
+
+        /** @var ViewStream $view */
+        $view = $response->getBody();
+        $view->modRenderer(function($renderer) use($breadcrumb, $file_name, $root) {
+            /** @var Renderer $renderer */
+            $renderer->setSection('breadcrumb', $breadcrumb);
+            $renderer->blockAsSection('tasks/sub-menu', 'sub-menu', ['file_name' => $file_name, 'base' => $root]);
+            return $renderer;
+        });
     }
 
     /**

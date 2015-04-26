@@ -51,7 +51,7 @@ if (!isset($view_dir) || !$view_dir) {
 }
 $views->modRenderer(function($renderer) use($view_dir) {
     /** @var Renderer $renderer */
-    $renderer->locator->addRoot($view_dir);
+    $renderer->setRoot($view_dir);
 });
 
 return $stack;
