@@ -1,8 +1,3 @@
-<?php
-/** @var Tuum\View\Renderer $this */
-$this->setLayout('layout/layout');
-
-?>
 
 <h1>Cannot Access File</h1>
 
