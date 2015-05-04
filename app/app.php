@@ -6,6 +6,7 @@
 
 use Demo\Site\ViewComposer;
 use Tuum\Web\Psr7\Request;
+use Tuum\Web\Psr7\Respond;
 use Tuum\Web\Web;
 
 date_default_timezone_set('Asia/Tokyo');
@@ -38,7 +39,11 @@ $web = Web::forge(__DIR__, $debug);
 $web
     ->loadConfig()
     ->loadEnvironment($web->vars_dir . '/env')
-    ->catchError()
+    ->catchError(    [
+        'errors/error', // default error view
+        Respond::ACCESS_DENIED  => 'errors/forbidden',
+        Respond::FILE_NOT_FOUND => 'errors/not-found',
+    ])
     ->pushSessionStack()
     ->push($web->get(ViewComposer::class))
     ->pushViewStack()
