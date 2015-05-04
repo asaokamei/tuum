@@ -21,12 +21,13 @@ $app = include( dirname(__DIR__).'/app/app.php' );
 // use the following for cheating speed contest.
 // 
 // $app = include( dirname(__DIR__).'/app/app-fast.php' );
+// $request  = RequestFactory::fromGlobalData($GLOBALS)->withApp($app);
 //
 
 #
 # run the $app. 
 #
 
-$request  = RequestFactory::fromGlobals();
+$request  = RequestFactory::fromGlobalData($GLOBALS)->withApp($app);
 $response = $app->__invoke($request);
 $response->send();

@@ -34,22 +34,22 @@ call_user_func(
 #
 
 
-$app = Web::forge(__DIR__, $debug);
-$app
+$web = Web::forge(__DIR__, $debug);
+$web
     ->loadConfig()
-    ->loadEnvironment($app->vars_dir . '/env')
+    ->loadEnvironment($web->vars_dir . '/env')
     ->catchError()
     ->pushSessionStack()
-    ->push($app->get(ViewComposer::class))
+    ->push($web->get(ViewComposer::class))
     ->pushViewStack()
     ->pushCsRfStack()
-    ->pushConfig($app->config_dir . '/routes')
-    ->pushConfig($app->config_dir . '/route-tasks')
-    ->pushConfig($app->config_dir . '/documents')
+    ->pushConfig($web->config_dir . '/routes')
+    ->pushConfig($web->config_dir . '/route-tasks')
+    ->pushConfig($web->config_dir . '/documents')
 ;
 
 # add a closure for testing purpose only.
-$app->prepend(
+$web->prepend(
     function ($request, $next) {
         /** @var Request $request */
         return $next ? $next($request->withAttribute('closure', function () {
@@ -57,4 +57,4 @@ $app->prepend(
         })) : null;
     });
 
-return $app;
+return $web->getApp();
