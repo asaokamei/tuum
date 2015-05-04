@@ -37,17 +37,22 @@ call_user_func(
 
 $web = Web::forge(__DIR__, $debug);
 $web
+    ->cacheApp(function($web) {
+        /** @var Web $web */
+        $web
+            ->catchError([
+                'errors/error', // default error view
+                Respond::ACCESS_DENIED  => 'errors/forbidden',
+                Respond::FILE_NOT_FOUND => 'errors/not-found',
+            ])
+            ->pushSessionStack()
+            ->push($web->get(ViewComposer::class))
+            ->pushViewStack()
+            ->pushCsRfStack()
+        ;
+    })
     ->loadConfig()
     ->loadEnvironment($web->vars_dir . '/env')
-    ->catchError(    [
-        'errors/error', // default error view
-        Respond::ACCESS_DENIED  => 'errors/forbidden',
-        Respond::FILE_NOT_FOUND => 'errors/not-found',
-    ])
-    ->pushSessionStack()
-    ->push($web->get(ViewComposer::class))
-    ->pushViewStack()
-    ->pushCsRfStack()
     ->pushConfig($web->config_dir . '/routes')
     ->pushConfig($web->config_dir . '/route-tasks')
     ->pushConfig($web->config_dir . '/documents')

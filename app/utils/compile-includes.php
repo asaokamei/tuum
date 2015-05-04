@@ -39,7 +39,7 @@ $config = ClassLoader::getIncludes(function( ClassLoader $loader) {
     $debug        = true;
     $app = include dirname(__DIR__).'/app.php';
 
-    $request  = RequestFactory::fromPath('no-such');
+    $request  = RequestFactory::fromPath('no-such')->withApp($app);
     $app->__invoke($request);
     $request->respond()->asForbidden();
     
