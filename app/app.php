@@ -49,6 +49,7 @@ $web
             ->push($web->get(ViewComposer::class))
             ->pushViewStack()
             ->pushCsRfStack()
+            ->loadContainer()
         ;
     })
     ->loadConfig()
