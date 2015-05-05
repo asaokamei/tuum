@@ -28,4 +28,4 @@ call_user_func(
 $app =Web::forge(__DIR__);
 $app->pushConfig($app->config_dir . '/route-fast');
 
-return $app;
+return $app->getApp();
