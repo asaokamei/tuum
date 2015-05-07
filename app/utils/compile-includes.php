@@ -36,7 +36,7 @@ $config = ClassLoader::getIncludes(function( ClassLoader $loader) {
     /** @noinspection PhpUnusedLocalVariableInspection */
     $xhProf_limit = false;
     /** @noinspection PhpUnusedLocalVariableInspection */
-    $debug        = true;
+    $debug        = false;
     $app = include dirname(__DIR__).'/app.php';
 
     $request  = RequestFactory::fromPath('no-such')->withApp($app);
