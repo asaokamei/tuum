@@ -1,8 +1,8 @@
 <?php /** @var \Tuum\View\Renderer $this */ ?>
 
-<?php $this->markSectionNoRender('breadcrumb'); ?>
+<?php $this->section->markNotToRender('breadcrumb'); ?>
 
-<?php $this->startSection(); ?>
+<?php $this->section->start(); ?>
 
 <!-- Section: Jumbotron -->
 
@@ -12,7 +12,7 @@
     <p><a href="https://github.com/TuumPHP/" target="_blank">source code≫</a></p>
 </div>
 
-<?php $this->endSectionAs('jumbotron'); ?>
+<?php $this->section->saveAs('jumbotron'); ?>
 
 <!-- Content: index -->
 

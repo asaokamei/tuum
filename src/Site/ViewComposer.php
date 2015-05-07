@@ -70,7 +70,7 @@ class ViewComposer implements ReleaseInterface
         $view = $response->getBody();
         $view->modRenderer(function($renderer) use($breadcrumb, $file_name, $root) {
             /** @var Renderer $renderer */
-            $renderer->setSection('breadcrumb', $breadcrumb);
+            $renderer->section->set('breadcrumb', $breadcrumb);
             $renderer->blockAsSection('tasks/sub-menu', 'sub-menu', ['file_name' => $file_name, 'base' => $root]);
             return $renderer;
         });
@@ -104,7 +104,7 @@ class ViewComposer implements ReleaseInterface
         $view = $response->getBody();
         $view->modRenderer(function($renderer) use($breadcrumb, $file_name) {
             /** @var Renderer $renderer */
-            $renderer->setSection('breadcrumb', $breadcrumb);
+            $renderer->section->set('breadcrumb', $breadcrumb);
             $renderer->blockAsSection('layout/docs-layout', 'sub-menu', ['file_name' => $file_name]);
             return $renderer;
         });
