@@ -98,13 +98,17 @@ $activate = function($case) use($current) {
             <?= $this->getSection('sideBar'); ?>
         </div>
         <div class="col-md-9">
-            <?= $this->getContent();?>
+
+<?= $this->getContent();?>
+
         </div>
 
     <?php else: ?>
         
         <div class="col-md-12">
-            <?= $this->getContent();?>
+
+<?= $this->getContent();?>
+
         </div>
         
     <?php endif; ?>

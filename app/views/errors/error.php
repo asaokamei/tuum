@@ -1,3 +1,4 @@
+<!-- error: error -->
 
 <h1>A Generic Error Happened</h1>
 
