@@ -21,7 +21,8 @@
     "wscore/auth": "dev-master",
     "wscore/validation": "dev-master",
     "wscore/scoredb": "dev-master",
-    "swiftmailer/swiftmailer": "@stable"
+    "swiftmailer/swiftmailer": "@stable",
+    "ray/di": "~2.0"
   },
   "repositories": [
     {

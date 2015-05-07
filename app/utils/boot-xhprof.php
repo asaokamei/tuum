@@ -8,6 +8,9 @@ return function ($xhProf_limit) {
     if (!function_exists('xhprof_enable')) {
         return;
     }
+    if ($xhProf_limit === false || !is_numeric($xhProf_limit)) {
+        return;
+    }
     xhprof_enable();
     $start_time = microtime(true);
     $app_name   = 'Tuum';
