@@ -13,7 +13,7 @@ use Tuum\Web\Web;
 
 $app_dir = dirname(__DIR__) . '/app';
 $config = [
-    'debug'   => false,
+    'debug'   => true,
     'xhProf'  => false,
     'app_dir' => $app_dir,
 ];

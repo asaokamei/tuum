@@ -122,7 +122,7 @@ The ```onInsert``` method is far more complicated than create method. It returns
      */
     protected function onInsert()
     {
-        if(!$this->validator->validate($this->request->getBodyParams())) {
+        if(!$this->validator->validate($this->request->getParsedBody())) {
             return $this->redirect()
                 ->withInput($this->validator->getData())
                 ->withInputErrors($this->validator->getErrors())
