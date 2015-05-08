@@ -4,19 +4,18 @@
  * function to pre-process before booting a web application.
  * $boot must exist.
  *
+ * @param array $config
  */
+return function(array $config) {
 
-return function($debug, $var_dir=null) {
-
-    if(!isset($debug) || $debug) {
+    $debug   = $config['debug'];
+    $vars_dir = $config['vars_dir'];
+    if($debug) {
         return;
     }
-
-    if(!isset($var_dir)) {
-        $var_dir = dirname(dirname(__DIR__)).'/var';
-    }
-    $compiled = $var_dir.'/compiled.php';
+    $compiled = $vars_dir.'/compiled.php';
     if(file_exists($compiled)) {
+        /** @noinspection PhpIncludeInspection */
         include_once($compiled);
     }
 };

@@ -11,18 +11,22 @@ use Tuum\Web\Web;
 # create a web application.
 #
 
-$debug        = true;
-$xhProf_limit = false;
+$app_dir = dirname(__DIR__) . '/app';
+$config = [
+    'debug'   => false,
+    'xhProf'  => false,
+    'app_dir' => $app_dir,
+];
 
 /** @var Web $app */
-$app = include( dirname(__DIR__).'/app/app.php' );
+$config = call_user_func(include($app_dir.'/config.php'), $config);
+$app    = call_user_func(include($app_dir.'/app.php'), $config);
 
-//
-// use the following for cheating speed contest.
-// 
-// $app = include( dirname(__DIR__).'/app/app-fast.php' );
-// $request  = RequestFactory::fromGlobalData($GLOBALS)->withApp($app);
-//
+#
+# use the following for cheating speed contest.
+# 
+# $app    = call_user_func(include($app_dir.'/app-fast.php'), $config);
+#
 
 #
 # run the $app. 
