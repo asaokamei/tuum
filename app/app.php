@@ -47,8 +47,7 @@ $web
             ])
             ->pushSessionStack()
             ->pushCsRfStack()
-            ->push($web->get(ViewComposer::class))
-            ->pushViewStack()
+            ->pushViewStack($web->get(ViewComposer::class))
             ->loadContainer()
         ;
     })
@@ -58,14 +57,5 @@ $web
     ->pushConfig($web->config_dir . '/route-tasks')
     ->pushConfig($web->config_dir . '/documents')
 ;
-
-# add a closure for testing purpose only.
-$web->prepend(
-    function ($request, $next) {
-        /** @var Request $request */
-        return $next ? $next($request->withAttribute('closure', function () {
-            ;
-        })) : null;
-    });
 
 return $web->getApp();

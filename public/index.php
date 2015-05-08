@@ -12,7 +12,7 @@ use Tuum\Web\Web;
 #
 
 $debug        = true;
-$xhProf_limit = '1.0';
+$xhProf_limit = false;
 
 /** @var Web $app */
 $app = include( dirname(__DIR__).'/app/app.php' );
@@ -31,3 +31,4 @@ $app = include( dirname(__DIR__).'/app/app.php' );
 $request  = RequestFactory::fromGlobalData($GLOBALS)->withApp($app);
 $response = $app->__invoke($request);
 $response->send();
+echo memory_get_usage();
