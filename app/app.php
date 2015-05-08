@@ -45,7 +45,7 @@ $web
                 Respond::FILE_NOT_FOUND => 'errors/not-found',
             ])
             ->pushSessionStack()
-            ->pushCsRfStack()
+            ->pushCsRfStack('post:/*')
             ->pushViewStack($web->get(ViewComposer::class))
             ->loadContainer()
         ;
