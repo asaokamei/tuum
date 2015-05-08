@@ -5,7 +5,6 @@
  */
 
 use Demo\Site\ViewComposer;
-use Tuum\Web\Psr7\Request;
 use Tuum\Web\Psr7\Respond;
 use Tuum\Web\Web;
 
