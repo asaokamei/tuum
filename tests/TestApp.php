@@ -23,12 +23,9 @@ abstract class TestApp extends \PHPUnit_Framework_TestCase
         if (!isset($_SESSION)) {
             $_SESSION = [];
         }
-        /** @noinspection PhpUnusedLocalVariableInspection */
-        $debug = true;
-        /** @noinspection PhpUnusedLocalVariableInspection */
-        $xhProf_limit = false;
-        /** @noinspection PhpIncludeInspection */
-        $this->app = include($this->getAppLocation());
+        $config = call_user_func(include(dirname(__DIR__).'/app/config.php'));
+        $config['vars_dir'] .= '/tests';
+        $this->app = call_user_func(include($this->getAppLocation()), $config);
     }
 
     /**
