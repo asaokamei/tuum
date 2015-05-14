@@ -15,7 +15,7 @@ class SampleController extends AbstractController
     private $validator;
 
     /**
-     * @return SampleController
+     * @param SampleValidator $validator
      */
     public function __construct(SampleValidator $validator)
     {
@@ -67,6 +67,7 @@ class SampleController extends AbstractController
     protected function onJump()
     {
         return $this->respond()
+            ->with('flashed', $this->request->getAttribute('flashed'))
             ->asView('sample/jump')
             ;
     }
@@ -79,6 +80,7 @@ class SampleController extends AbstractController
     {
         return $this->redirect()
             ->withMessage($message)
+            ->withFlashData('flashed', 'message using session flash: '.$message)
             ->toBasePath('jump')
             ;
     }
