@@ -8,7 +8,7 @@ use Tuum\Web\View\Value;
 /** @var Value $view */
 
 $forms = $view->forms;
-$dates = $view->dates;
+$dates = $view->dates->withClass('form-control')->resetWidth();
 $data  = $view->data;
 
 ?>
@@ -53,7 +53,7 @@ $data  = $view->data;
     <dt>Select Box</dt>
     <dd><?= $forms->select('select-box',
             Lists::forge(1, 10, 3)->setFormat(function($s) {return 'selecting #'.$s;})
-        ); ?>
+        )->class('form-control'); ?>
     </dd>
     
     <dt>Radio List</dt>
@@ -82,7 +82,10 @@ $data  = $view->data;
     <dd><?= $dates->dateYM('ym', null, 'Year%1$s / Month%2$s')->head('---'); ?></dd>
 
     <dt>Japanese GenGou</dt>
-    <dd><?= $dates->useYear(YearList::forge(2015, 2017)->setFormat(YearList::formatJpnGenGou()))->selYear('year'); ?></dd>
+    <dd><?= $dates
+            ->useYear(YearList::forge(2015, 2017)
+                ->setFormat(YearList::formatJpnGenGou()))
+            ->selYear('year'); ?></dd>
 
     <dt>Month Day, Year</dt>
     <dd><?= $dates
