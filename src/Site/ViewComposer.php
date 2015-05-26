@@ -11,15 +11,6 @@ class ViewComposer implements ReleaseInterface
 {
     /**
      * @param Request       $request
-     * @param callable|null $next
-     * @return null|Response
-     */
-    public function __invoke($request, $next = null)
-    {
-    }
-
-    /**
-     * @param Request       $request
      * @param null|Response $response
      * @return null|Response
      */
