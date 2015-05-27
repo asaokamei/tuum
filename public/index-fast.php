@@ -20,13 +20,7 @@ $config = [
 
 /** @var Application $app */
 $config = call_user_func(include($app_dir.'/config.php'), $config);
-$app    = call_user_func(include($app_dir.'/app.php'), $config);
-
-#
-# use the following for cheating speed contest.
-# 
-# $app    = call_user_func(include($app_dir.'/app-fast.php'), $config);
-#
+$app    = call_user_func(include($app_dir.'/app-fast.php'), $config);
 
 #
 # run the $app. 
@@ -35,4 +29,3 @@ $app    = call_user_func(include($app_dir.'/app.php'), $config);
 $request  = RequestFactory::fromGlobalData($GLOBALS)->withApp($app);
 $response = $app->__invoke($request);
 $response->send();
-echo memory_get_usage();
