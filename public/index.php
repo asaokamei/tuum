@@ -35,4 +35,3 @@ $app    = call_user_func(include($app_dir.'/app.php'), $config);
 $request  = RequestFactory::fromGlobalData($GLOBALS)->withApp($app);
 $response = $app->__invoke($request);
 $response->send();
-echo memory_get_usage();
