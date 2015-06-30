@@ -41,4 +41,11 @@
     <p>a demo task application defined as another stack. </p>
 </div>
 
+<div class="col-md-4">
+    <h3>Other Demo</h3>
+    <ul>
+        <li><a href="pages">pagination example</a> </li>
+    </ul>
+</div>
+
 

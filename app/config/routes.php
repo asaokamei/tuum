@@ -14,6 +14,10 @@ use Tuum\Web\Psr7\Request;
 use Tuum\Web\Stack\RouterStack;
 use Tuum\Web\Application;
 use Tuum\Web\Web;
+use WScore\Pagination\Html\Paginate;
+use WScore\Pagination\Html\PaginateMini;
+use WScore\Pagination\Html\PaginateNext;
+use WScore\Pagination\Inputs;
 
 /** @var Web $web */
 /** @var Application $app */
@@ -34,6 +38,23 @@ $routes->get( '/', function($request) {
     return $request->respond()->asView('index');
 });
 
+$routes->get('/pages', function(Request $request) {
+
+    $pager = new WScore\Pagination\Pager(['_limit' => 5]);
+    $pager = $pager->withRequest($request);
+    $inputs = $pager->call(function(Inputs $inputs) {
+        $inputs->setTotal(70);
+    });
+    $page1 = $inputs->paginate(new Paginate());
+    $page2 = $inputs->paginate(new PaginateMini());
+    $page3 = $inputs->paginate(new PaginateNext());
+    return $request->respond()
+        ->with('page1', $page1)
+        ->with('page2', $page2)
+        ->with('page3', $page3)
+        ->with('_limit', $inputs->getLimit())
+        ->asView('/pages');
+});
 
 /**
  * routes for closure/ pattern.
