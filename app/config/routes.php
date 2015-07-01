@@ -14,10 +14,10 @@ use Tuum\Web\Psr7\Request;
 use Tuum\Web\Stack\RouterStack;
 use Tuum\Web\Application;
 use Tuum\Web\Web;
-use WScore\Pagination\Html\Paginate;
-use WScore\Pagination\Html\PaginateMini;
-use WScore\Pagination\Html\PaginateNext;
-use WScore\Pagination\Inputs;
+use Tuum\Pagination\Html\Paginate;
+use Tuum\Pagination\Html\PaginateMini;
+use Tuum\Pagination\Html\PaginateNext;
+use Tuum\Pagination\Inputs;
 
 /** @var Web $web */
 /** @var Application $app */
@@ -40,7 +40,7 @@ $routes->get( '/', function($request) {
 
 $routes->get('/pages', function(Request $request) {
 
-    $pager = new WScore\Pagination\Pager(['_limit' => 5]);
+    $pager = new Tuum\Pagination\Pager(['_limit' => 5]);
     $pager = $pager->withRequest($request);
     $inputs = $pager->call(function(Inputs $inputs) {
         $inputs->setTotal(70);

@@ -14,6 +14,7 @@
     "classpreloader/classpreloader": "~1.0",
     "tuum/web":"dev-master",
     "tuum/byof": " dev-master",
+    "tuum/pagination": " dev-master",
     "robmorgan/phinx": "0.4.*",
     "aura/auth": " 2.0.*",
     "wscore/basic": "dev-master",
