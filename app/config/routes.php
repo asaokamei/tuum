@@ -9,6 +9,7 @@
  * 
  */
 use Demo\Site\SampleController;
+use Tuum\Pagination\Html\ToHtmlBootstrap;
 use Tuum\Router\RouteCollector;
 use Tuum\Web\Psr7\Request;
 use Tuum\Web\Stack\RouterStack;
@@ -45,9 +46,10 @@ $routes->get('/pages', function(Request $request) {
     $inputs = $pager->call(function(Inputs $inputs) {
         $inputs->setTotal(70);
     });
-    $page1 = $inputs->paginate(new Paginate());
-    $page2 = $inputs->paginate(new PaginateMini());
-    $page3 = $inputs->paginate(new PaginateNext());
+    $toHtml = ToHtmlBootstrap::forge();
+    $page1 = $toHtml->withPaginate(Paginate::forge()->withInputs($inputs));
+    $page2 = $toHtml->withPaginate(PaginateMini::forge()->withInputs($inputs));
+    $page3 = $toHtml->withPaginate(PaginateNext::forge()->withInputs($inputs));
     return $request->respond()
         ->with('page1', $page1)
         ->with('page2', $page2)
