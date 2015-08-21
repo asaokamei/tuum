@@ -72,8 +72,10 @@ class Builder
         $configure = $this->app_dir . $configure;
         /** @noinspection PhpUnusedLocalVariableInspection */
         $app = $this->app;
-        /** @noinspection PhpIncludeInspection */
-        $this->app = include $configure;
+        if (fileExists($configure)) {
+            /** @noinspection PhpIncludeInspection */
+            $this->app = include $configure;
+        }
         return $this;
     }
 
@@ -98,6 +100,9 @@ class Builder
         $config_file = '/' . trim($config_file, '/');
         /** @noinspection PhpIncludeInspection */
         $environments = (array) include($this->var_dir . $env_file);
+        if ($this->debug) {
+            $environments[] = 'debug';
+        }
         foreach($environments as $env) {
             $this->configure($this->var_dir . $env . $config_file);
         }
