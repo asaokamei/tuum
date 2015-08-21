@@ -86,6 +86,23 @@ class Builder
         $this->app = $configure($this->app, $this);
         return $this;
     }
+
+    /**
+     * @param        $env_file
+     * @param string $config_file
+     * @return $this
+     */
+    public function environments($env_file, $config_file = 'configure')
+    {
+        $env_file = '/' . trim($env_file, '/');
+        $config_file = '/' . trim($config_file, '/');
+        /** @noinspection PhpIncludeInspection */
+        $environments = (array) include($this->var_dir . $env_file);
+        foreach($environments as $env) {
+            $this->configure($this->var_dir . $env . $config_file);
+        }
+        return $this;
+    }
     
     /**
      * caches entire Application, $app, to a file.
