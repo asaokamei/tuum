@@ -17,7 +17,6 @@ use Tuum\Web\Application;
 use Tuum\Web\Web;
 use Tuum\Pagination\Html\PaginateFull;
 use Tuum\Pagination\Html\PaginateMini;
-use Tuum\Pagination\Html\PaginateNext;
 use Tuum\Pagination\Inputs;
 
 /** @var Web $web */
