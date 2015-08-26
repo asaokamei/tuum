@@ -15,7 +15,7 @@ use Tuum\Web\Psr7\Request;
 use Tuum\Web\Stack\RouterStack;
 use Tuum\Web\Application;
 use Tuum\Web\Web;
-use Tuum\Pagination\Html\Paginate;
+use Tuum\Pagination\Html\PaginateFull;
 use Tuum\Pagination\Html\PaginateMini;
 use Tuum\Pagination\Html\PaginateNext;
 use Tuum\Pagination\Inputs;
@@ -47,7 +47,7 @@ $routes->get('/pages', function(Request $request) {
         $inputs->setTotal(70);
     });
     $toHtml = ToHtmlBootstrap::forge();
-    $page1 = $toHtml->withPaginate(Paginate::forge()->withInputs($inputs));
+    $page1 = $toHtml->withPaginate(PaginateFull::forge()->withInputs($inputs));
     $page2 = $toHtml->withPaginate(PaginateMini::forge()->withInputs($inputs));
     $page3 = $toHtml->withPaginate(PaginateNext::forge()->withInputs($inputs));
     return $request->respond()

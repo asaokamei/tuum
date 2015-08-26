@@ -12,19 +12,13 @@ $page_selection = [3 => 3, 5 => 5, 10 => 10, 20 => 20];
 
 <p>This page demonstrates the outcome of the WScore/Paginate package. </p>
 
-<h3>Paginate</h3>
+<h3>PaginateFull class</h3>
 
 <?= $view->data->page1; ?>
 
-<h3>PaginateMini</h3>
-
+<h3>PaginateMini class</h3>
 
 <?= $view->data->page2; ?>
-
-<h3>PaginateNext</h3>
-
-<?= $view->data->page3; ?>
-
 
 <h2>Changing Per Page</h2>
 
