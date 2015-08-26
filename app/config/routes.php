@@ -49,11 +49,9 @@ $routes->get('/pages', function(Request $request) {
     $toHtml = ToHtmlBootstrap::forge();
     $page1 = $toHtml->withPaginate(PaginateFull::forge()->withInputs($inputs));
     $page2 = $toHtml->withPaginate(PaginateMini::forge()->withInputs($inputs));
-    $page3 = $toHtml->withPaginate(PaginateNext::forge()->withInputs($inputs));
     return $request->respond()
         ->with('page1', $page1)
         ->with('page2', $page2)
-        ->with('page3', $page3)
         ->with('_limit', $inputs->getLimit())
         ->asView('/pages');
 });
