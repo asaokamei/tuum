@@ -22,6 +22,7 @@
     "wscore/auth": "dev-master",
     "wscore/validation": "dev-master",
     "wscore/scoredb": "dev-master",
+    "wscore/pages": "1.x@dev",
     "swiftmailer/swiftmailer": "@stable",
     "ray/di": "~2.0"
   },
