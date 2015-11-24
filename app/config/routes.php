@@ -9,13 +9,13 @@
  *
  */
 use Demo\Site\SampleController;
-use Tuum\Pagination\Factory\Pagination;
+use Tuum\Pagination\Pagination;
 use Tuum\Router\RouteCollector;
 use Tuum\Web\Psr7\Request;
 use Tuum\Web\Stack\RouterStack;
 use Tuum\Web\Application;
 use Tuum\Web\Web;
-use Tuum\Pagination\Html\PaginateFull;
+use Tuum\Pagination\Paginate\PaginateFull;
 use Tuum\Pagination\Inputs;
 
 /** @var Web $web */
